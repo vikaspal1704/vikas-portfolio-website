@@ -7,39 +7,64 @@ import { ArrowUpRight, Briefcase } from "lucide-react"
 
 const experiences = [
   {
-    period: "2023 — Present",
-    title: "Software Development Engineer",
-    company: "ViewTrade",
+    period: "Aug 2023 — Present",
+    title: "Software Development Engineer (SDE I)",
+    company: "ViewTrade IFSC (GIFT City)",
     companyUrl: "https://viewtrade.com",
     description:
-      "Building Bridge - a global access provider for international stock trading. Developing high-performance React interfaces with real-time market data, advanced charting with D3.js, and seamless order execution. Currently focused on frontend architecture with upcoming transition to backend development.",
-    technologies: ["React", "TypeScript", "Redux Toolkit", "WebSocket", "D3.js", "Fintech"],
+      "Building and scaling mission-critical fintech trading platforms handling 10,000+ concurrent traders with 99.9%+ uptime. Designed low-latency WebSocket architecture delivering sub-100ms real-time market data and reduced order execution latency by 62.5%. Led frontend performance modernization achieving 44% faster Time-to-Interactive and 38% bundle size reduction. Actively contributing to backend modernization, microservices migration, and platform reliability improvements.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "WebSocket",
+      "Fintech Systems",
+      "Microservices",
+      "Performance Optimization",
+      "AWS"
+    ],
     highlight: true,
-    role: "Frontend Engineer (transitioning to Full-Stack)",
+    role: "Frontend Engineer → Full-Stack (Fintech)"
   },
   {
-    period: "2021 — 2023",
-    title: "Full Stack Developer",
+    period: "Jan 2021 — Jul 2023",
+    title: "Software Developer",
     company: "Zeus Learning",
     companyUrl: "https://zeuslearning.com",
     description:
-      "Led development of Test Maverick, an AI-powered test taking platform. Handled full-stack responsibilities including React frontend, Node.js backend APIs, Python ML services, and DevOps infrastructure. Designed scalable architecture serving thousands of concurrent users.",
-    technologies: ["React", "Node.js", "Python", "AWS", "Docker", "PostgreSQL", "CI/CD"],
+      "Developed and scaled AI-powered assessment and chatbot platforms serving 100K+ daily users and 10K+ concurrent test-takers. Owned full-stack delivery across React frontend, Node.js backend services, and Python-based ML systems. Improved platform response times by 55–65%, supported 50M+ API requests per day, and reduced infrastructure and LLM costs by ~40% through semantic caching, batching, and performance optimization.",
+    technologies: [
+      "React",
+      "Node.js",
+      "Python",
+      "AWS",
+      "Docker",
+      "PostgreSQL",
+      "Microservices",
+      "LLMs"
+    ],
     highlight: false,
-    role: "Full-Stack & DevOps",
+    role: "Full-Stack Engineer"
   },
   {
-    period: "2020 — 2021",
-    title: "Junior Software Developer",
-    company: "Zeus Learning",
-    companyUrl: "https://zeuslearning.com",
+    period: "Jun 2020 — Aug 2020",
+    title: "Software Engineering Intern",
+    company: "CultureX Entertainment",
+    companyUrl: "https://culturex.in",
     description:
-      "Started professional journey building educational technology products. Developed frontend interfaces, contributed to backend services, and learned enterprise development practices in an agile environment.",
-    technologies: ["React", "JavaScript", "Node.js", "MongoDB", "Git"],
+      "Worked on early-stage product development for a consumer entertainment platform. Built responsive UI components, integrated REST APIs, and collaborated closely with founders to ship production features under tight timelines. Gained hands-on experience with real-world product delivery, code reviews, and agile execution.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "REST APIs",
+      "Git"
+    ],
     highlight: false,
-    role: "Full-Stack Developer",
-  },
-]
+    role: "Frontend Engineering Intern"
+  }
+];
 
 export function Experience() {
   const ref = useRef(null)

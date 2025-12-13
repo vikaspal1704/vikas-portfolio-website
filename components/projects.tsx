@@ -9,71 +9,103 @@ import { TiltCard } from "./tilt-card"
 
 const projects = [
   {
-    title: "Bridge - Global Access Provider",
+    title: "Global Trading Platform (B2B2C, White-Labeled)",
     description:
-      "Enterprise-grade global stock trading platform at ViewTrade enabling seamless access to international markets. Built high-performance trading interfaces with real-time market data visualization, advanced charting, and low-latency order execution.",
+      "Enterprise-grade global trading platform for B2B2C users, supporting multiple broker and client configurations through white-labeling and theming. Built real-time trading interfaces with sub-100ms market data delivery using WebSockets, optimized frontend performance by 44% faster TTI and 38% bundle size reduction, and enabled low-latency order execution for 10,000+ concurrent traders with 99.9%+ uptime.",
     image: "/global-stock-trading-platform-dark-theme-with-worl.jpg",
-    tags: ["React", "TypeScript", "Redux Toolkit", "WebSocket", "D3.js", "Fintech"],
+    tags: [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "WebSocket",
+      "Fintech",
+      "White-Label Platforms",
+      "Performance Optimization"
+    ],
     github: null,
     live: null,
     featured: true,
     color: "from-cyan-500/20 to-blue-600/20",
-    company: "ViewTrade",
-    isCompanyProject: true,
+    company: "Enterprise Fintech (Confidential)",
+    isCompanyProject: true
   },
   {
-    title: "Test Maverick",
+    title: "AI Assessment & Test-Taking Platform",
     description:
-      "AI-powered test taking platform revolutionizing online assessments. Led full-stack development including scalable backend architecture, DevOps pipelines, and intelligent test analysis features that improved student performance tracking.",
+      "AI-powered online assessment platform developed for large-scale educational use. Contributed to full-stack development across React frontend, Node.js backend services, and Python-based ML components. Scaled to support 100K+ daily users and 10K+ concurrent test-takers while improving response times by 55–65% and maintaining 99.9% uptime.",
     image: "/ai-test-taking-platform-with-analytics-dashboard-d.jpg",
-    tags: ["React", "Node.js", "Python", "AWS", "Docker", "AI/ML", "PostgreSQL"],
+    tags: [
+      "Vue.js",
+      ".NET",
+      "Python",
+      "AWS",
+      "Docker",
+      "VectorDB",
+      "AI Systems",
+      "LLM",
+      "AI Agents"
+    ],
     github: null,
     live: null,
     featured: true,
     color: "from-violet-500/20 to-purple-600/20",
     company: "Zeus Learning",
-    isCompanyProject: true,
+    isCompanyProject: true
   },
   {
-    title: "AI Expense Analyzer",
+    title: "Social Media Performance Analysis",
     description:
-      "Intelligent expense tracking application using machine learning to categorize transactions, predict spending patterns, and provide personalized financial insights with beautiful visualizations.",
-    image: "/ai-expense-analyzer-dashboard-with-charts-and-grap.jpg",
-    tags: ["React", "TypeScript", "OpenAI", "TailwindCSS", "Chart.js"],
-    github: "https://github.com/vikas",
-    live: null,
-    featured: true,
-    color: "from-green-500/20 to-emerald-600/20",
-    company: null,
-    isCompanyProject: false,
-  },
-  {
-    title: "FreezerGuard",
-    description:
-      "IoT-powered freezer monitoring system tracking temperature in real-time with smart alerts when conditions become unsafe, preventing food spoilage and optimizing energy consumption.",
-    image: "/iot-freezer-monitoring-dashboard-with-temperature-.jpg",
-    tags: ["React", "Node.js", "MQTT", "WebSockets", "PostgreSQL", "IoT"],
-    github: "https://github.com/vikas",
-    live: null,
-    featured: true,
-    color: "from-orange-500/20 to-red-600/20",
-    company: null,
-    isCompanyProject: false,
-  },
-  {
-    title: "Vector Engine",
-    description:
-      "High-performance vector search engine with semantic similarity matching. Built for AI applications requiring fast, accurate embeddings retrieval with sub-millisecond query times.",
-    image: "/vector-database-search-interface-with-embeddings-v.jpg",
-    tags: ["TypeScript", "Python", "FastAPI", "Pinecone", "Redis"],
-    github: "https://github.com/vikas",
+      "Python-based data analysis project focused on evaluating social media engagement and performance metrics. Includes data parsing, aggregation, and visualization to derive actionable insights from raw datasets.",
+    image: "/social-media-performance-analysis-dashboard.jpg",
+    tags: ["Python", "Data Analysis", "Pandas", "Visualization"],
+    github: "https://github.com/vikaspal1704/Social-Media-performance-analysis",
     live: null,
     featured: false,
-    color: "from-pink-500/20 to-rose-600/20",
+    color: "from-blue-500/20 to-indigo-600/20",
     company: null,
-    isCompanyProject: false,
+    isCompanyProject: false
   },
-]
+  {
+    title: "Taskmate – Task Management Web App",
+    description:
+      "Lightweight task management web application built using vanilla HTML, CSS, and JavaScript. Demonstrates core frontend fundamentals, UI logic, and browser-based state handling.",
+    image: "/taskmate-web-app.jpg",
+    tags: ["HTML", "CSS", "JavaScript", "Frontend Basics"],
+    github: "https://github.com/vikaspal1704/Taskmate",
+    live: null,
+    featured: false,
+    color: "from-yellow-400/20 to-orange-500/20",
+    company: null,
+    isCompanyProject: false
+  },
+  {
+    title: "Tkinter Desktop Application",
+    description:
+      "Desktop application built using Python and Tkinter, focusing on GUI development, event-driven programming, and user interaction workflows.",
+    image: "/tkinter-app-screenshot.jpg",
+    tags: ["Python", "Tkinter", "Desktop Applications"],
+    github: "https://github.com/vikaspal1704/Tkinter-app",
+    live: null,
+    featured: false,
+    color: "from-green-300/20 to-teal-500/20",
+    company: null,
+    isCompanyProject: false
+  },
+  {
+    title: "Web Scraping Utilities",
+    description:
+      "Collection of Python scripts for web scraping and data extraction, demonstrating real-world scraping techniques, request handling, and data processing pipelines.",
+    image: "/web-scraping-scripts.jpg",
+    tags: ["Python", "Web Scraping", "BeautifulSoup", "Requests"],
+    github: "https://github.com/vikaspal1704/Web-Scraping",
+    live: null,
+    featured: false,
+    color: "from-gray-400/20 to-black-600/20",
+    company: null,
+    isCompanyProject: false
+  }
+];
+
 
 export function Projects() {
   const ref = useRef(null)
