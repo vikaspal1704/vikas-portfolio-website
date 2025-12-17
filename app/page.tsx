@@ -3,7 +3,7 @@ import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Skills } from "@/components/skills"
 import { Projects } from "@/components/projects"
-import { Experience } from "@/components/experience"
+import { ExperienceHorizontal } from "@/components/experience-horizontal"
 import { Testimonials } from "@/components/testimonials"
 import { Blog } from "@/components/blog"
 import { Contact } from "@/components/contact"
@@ -25,7 +25,7 @@ export default function Home() {
         <About />
         <Skills />
         <Projects />
-        <Experience />
+        <ExperienceHorizontal />
         <Testimonials />
         <Blog />
         <Contact />

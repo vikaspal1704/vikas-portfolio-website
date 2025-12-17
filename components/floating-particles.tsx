@@ -17,12 +17,13 @@ export function FloatingParticles() {
   const { mouseX, mouseY } = useParallax()
   const particlesRef = useRef<Particle[]>([])
   const animationRef = useRef<number>(0)
+  const lastMouseMoveRef = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext("2d", { alpha: true, willReadFrequently: false })
     if (!ctx) return
 
     const resizeCanvas = () => {
@@ -33,62 +34,74 @@ export function FloatingParticles() {
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    // Initialize particles
-    const particleCount = 50
+    const particleCount = Math.min(30, Math.floor(window.innerWidth / 40))
     particlesRef.current = Array.from({ length: particleCount }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       size: Math.random() * 2 + 1,
-      speedX: (Math.random() - 0.5) * 0.5,
-      speedY: (Math.random() - 0.5) * 0.5,
-      opacity: Math.random() * 0.5 + 0.2,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: (Math.random() - 0.5) * 0.3,
+      opacity: Math.random() * 0.4 + 0.2,
     }))
 
-    const animate = () => {
+    let lastTime = performance.now()
+    const targetFPS = 60
+    const frameDelay = 1000 / targetFPS
+
+    const animate = (currentTime: number) => {
       if (!ctx || !canvas) return
+
+      const deltaTime = currentTime - lastTime
+      if (deltaTime < frameDelay) {
+        animationRef.current = requestAnimationFrame(animate)
+        return
+      }
+      lastTime = currentTime - (deltaTime % frameDelay)
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+      const dx = mouseX - lastMouseMoveRef.current.x
+      const dy = mouseY - lastMouseMoveRef.current.y
+      if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+        lastMouseMoveRef.current = { x: mouseX, y: mouseY }
+      }
+
       particlesRef.current.forEach((particle, i) => {
-        // Mouse influence
-        const dx = mouseX - particle.x
-        const dy = mouseY - particle.y
+        const dx = lastMouseMoveRef.current.x - particle.x
+        const dy = lastMouseMoveRef.current.y - particle.y
         const distance = Math.sqrt(dx * dx + dy * dy)
         const maxDistance = 150
 
         if (distance < maxDistance) {
           const force = (maxDistance - distance) / maxDistance
-          particle.x -= (dx / distance) * force * 2
-          particle.y -= (dy / distance) * force * 2
+          particle.x -= (dx / distance) * force * 1.5
+          particle.y -= (dy / distance) * force * 1.5
         }
 
-        // Update position
         particle.x += particle.speedX
         particle.y += particle.speedY
 
-        // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width
         if (particle.x > canvas.width) particle.x = 0
         if (particle.y < 0) particle.y = canvas.height
         if (particle.y > canvas.height) particle.y = 0
 
-        // Draw particle
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(94, 234, 212, ${particle.opacity})`
+        ctx.fillStyle = `rgba(0, 255, 255, ${particle.opacity})`
         ctx.fill()
 
-        // Draw connections
-        particlesRef.current.slice(i + 1).forEach((otherParticle) => {
+        particlesRef.current.slice(i + 1, i + 4).forEach((otherParticle) => {
           const dx = particle.x - otherParticle.x
           const dy = particle.y - otherParticle.y
           const distance = Math.sqrt(dx * dx + dy * dy)
 
-          if (distance < 120) {
+          if (distance < 100) {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = `rgba(94, 234, 212, ${0.1 * (1 - distance / 120)})`
+            ctx.strokeStyle = `rgba(0, 255, 255, ${0.15 * (1 - distance / 100)})`
+            ctx.lineWidth = 0.5
             ctx.stroke()
           }
         })
@@ -97,7 +110,7 @@ export function FloatingParticles() {
       animationRef.current = requestAnimationFrame(animate)
     }
 
-    animate()
+    animate(performance.now())
 
     return () => {
       window.removeEventListener("resize", resizeCanvas)
@@ -105,5 +118,5 @@ export function FloatingParticles() {
     }
   }, [mouseX, mouseY])
 
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-60" aria-hidden="true" />
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-50" aria-hidden="true" />
 }

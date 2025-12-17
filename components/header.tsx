@@ -22,11 +22,19 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
+    let rafId: number
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 50)
+        rafId = 0
+      })
     }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
@@ -34,12 +42,13 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass py-4" : "py-6"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "glass py-4 border-b border-primary/10" : "py-6"
+      }`}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold tracking-tight">
-          <span className="gradient-text">Vikas</span>
-          <span className="text-muted-foreground ml-1 text-sm font-normal">/ SDE</span>
+        <Link href="/" className="text-2xl font-black tracking-tighter">
+          <span className="gradient-text">VIKAS</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -48,34 +57,38 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors relative group font-medium tracking-wide uppercase"
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(0,255,255,0.8)]" />
             </Link>
           ))}
           <a
             href={RESUME_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group flex items-center gap-1"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors relative group flex items-center gap-2 font-medium tracking-wide uppercase"
           >
-            <FileText size={14} />
+            <FileText size={16} />
             Resume
-            <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(0,255,255,0.8)]" />
           </a>
-          <Button asChild size="sm" className="ml-4">
-            <Link href="#contact">Get in Touch</Link>
+          <Button
+            asChild
+            size="sm"
+            className="ml-4 rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-bold border-2 border-primary hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] transition-all"
+          >
+            <Link href="#contact">Let's Talk</Link>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2"
+          className="md:hidden p-2 text-primary"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
@@ -86,7 +99,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass"
+            className="md:hidden glass border-t border-primary/10"
           >
             <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
               {navItems.map((item) => (
@@ -94,7 +107,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg text-muted-foreground hover:text-foreground transition-colors py-2"
+                  className="text-lg text-muted-foreground hover:text-primary transition-colors py-2 font-medium uppercase tracking-wide"
                 >
                   {item.label}
                 </Link>
@@ -104,13 +117,13 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg text-muted-foreground hover:text-foreground transition-colors py-2 flex items-center gap-2"
+                className="text-lg text-muted-foreground hover:text-primary transition-colors py-2 flex items-center gap-2 font-medium uppercase tracking-wide"
               >
-                <FileText size={18} />
+                <FileText size={20} />
                 Resume
               </a>
-              <Button asChild className="mt-4">
-                <Link href="#contact">Get in Touch</Link>
+              <Button asChild className="mt-4 rounded-full bg-primary text-primary-foreground font-bold">
+                <Link href="#contact">Let's Talk</Link>
               </Button>
             </div>
           </motion.div>

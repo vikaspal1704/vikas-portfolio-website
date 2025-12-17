@@ -7,14 +7,19 @@ export function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
-  const cursorX = useSpring(0, { stiffness: 500, damping: 28 })
-  const cursorY = useSpring(0, { stiffness: 500, damping: 28 })
+  const cursorX = useSpring(0, { stiffness: 300, damping: 35 })
+  const cursorY = useSpring(0, { stiffness: 300, damping: 35 })
 
   useEffect(() => {
+    let rafId: number
     const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX)
-      cursorY.set(e.clientY)
-      setIsVisible(true)
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        cursorX.set(e.clientX)
+        cursorY.set(e.clientY)
+        setIsVisible(true)
+        rafId = 0
+      })
     }
 
     const handleMouseLeave = () => setIsVisible(false)
@@ -34,14 +39,15 @@ export function CustomCursor() {
       }
     }
 
-    window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
     window.addEventListener("mouseleave", handleMouseLeave)
-    window.addEventListener("mouseover", handleMouseOver)
+    window.addEventListener("mouseover", handleMouseOver, { passive: true })
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("mouseleave", handleMouseLeave)
       window.removeEventListener("mouseover", handleMouseOver)
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [cursorX, cursorY])
 
@@ -49,7 +55,7 @@ export function CustomCursor() {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference hidden md:block will-change-transform"
         style={{
           x: cursorX,
           y: cursorY,
@@ -60,16 +66,16 @@ export function CustomCursor() {
         <motion.div
           className="rounded-full bg-primary"
           animate={{
-            width: isHovering ? 60 : 8,
-            height: isHovering ? 60 : 8,
+            width: isHovering ? 50 : 8,
+            height: isHovering ? 50 : 8,
             opacity: isVisible ? 1 : 0,
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
         />
       </motion.div>
       {/* Outer ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] hidden md:block"
+        className="fixed top-0 left-0 pointer-events-none z-[9998] hidden md:block will-change-transform"
         style={{
           x: cursorX,
           y: cursorY,
@@ -78,13 +84,13 @@ export function CustomCursor() {
         }}
       >
         <motion.div
-          className="rounded-full border border-primary/50"
+          className="rounded-full border border-primary/40"
           animate={{
-            width: isHovering ? 80 : 32,
-            height: isHovering ? 80 : 32,
-            opacity: isVisible ? 0.5 : 0,
+            width: isHovering ? 70 : 28,
+            height: isHovering ? 70 : 28,
+            opacity: isVisible ? 0.4 : 0,
           }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
         />
       </motion.div>
     </>
