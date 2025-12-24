@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const RESUME_URL = "https://drive.google.com/file/d/YOUR_RESUME_FILE_ID/view?usp=sharing"
+const RESUME_URL = "https://drive.google.com/file/d/1HxLwWeAZZJB_1mq73S36DKmEuaZVAxcL/view?usp=drive_link"
 
 const navItems = [
   { href: "#about", label: "About" },

@@ -8,19 +8,19 @@ const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Vikas (Suraj Pal) | Frontend Developer & Fintech Engineer",
+  title: "Vikas Pal | Frontend Developer & Fintech Engineer",
   description:
     "Frontend Developer specializing in React, TypeScript, and fintech products. Building scalable, high-performance web applications with a focus on user experience.",
   keywords: ["Frontend Developer", "React", "TypeScript", "Fintech", "Software Engineer", "Next.js", "Tailwind CSS"],
-  authors: [{ name: "Vikas (Suraj Pal)" }],
+  authors: [{ name: "Vikas Pal" }],
   openGraph: {
-    title: "Vikas (Suraj Pal) | Frontend Developer & Fintech Engineer",
+    title: "Vikas Pal | Frontend Developer & Fintech Engineer",
     description: "Frontend Developer specializing in React, TypeScript, and fintech products.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vikas (Suraj Pal) | Frontend Developer",
+    title: "Vikas Pal | Frontend Developer",
     description: "Frontend Developer specializing in React, TypeScript, and fintech products.",
   },
   icons: {

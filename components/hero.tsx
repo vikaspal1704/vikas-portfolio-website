@@ -7,7 +7,7 @@ import { useRef } from "react"
 import { CharReveal } from "./text-reveal"
 import { MagneticButton } from "./magnetic-button"
 
-const RESUME_URL = "https://drive.google.com/file/d/YOUR_RESUME_FILE_ID/view?usp=sharing"
+const RESUME_URL = "https://drive.google.com/file/d/1HxLwWeAZZJB_1mq73S36DKmEuaZVAxcL/view?usp=drive_link"
 
 export function Hero() {
   const containerRef = useRef(null)
@@ -165,9 +165,9 @@ export function Hero() {
             className="flex items-center gap-4"
           >
             {[
-              { href: "https://github.com/vikas", icon: Github, label: "GitHub", color: "cyan" },
-              { href: "https://linkedin.com/in/vikas", icon: Linkedin, label: "LinkedIn", color: "blue" },
-              { href: "mailto:vikas@example.com", icon: Mail, label: "Email", color: "purple" },
+              { href: "https://github.com/vikaspal1704", icon: Github, label: "GitHub", color: "cyan" },
+              { href: "https://www.linkedin.com/in/vikaspal1704/", icon: Linkedin, label: "LinkedIn", color: "blue" },
+              { href: "mailto:palv499@gmail.com", icon: Mail, label: "Email", color: "purple" },
             ].map((social, i) => (
               <motion.a
                 key={social.label}

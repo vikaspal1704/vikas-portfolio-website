@@ -132,7 +132,7 @@ export function BlogPostContent({ post }: Props) {
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <Button asChild variant="outline">
-              <Link href="https://linkedin.com/in/vikas" target="_blank">
+              <Link href="https://www.linkedin.com/in/vikaspal1704/" target="_blank">
                 <Linkedin className="mr-2 h-4 w-4" />
                 Connect on LinkedIn
               </Link>

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react"
 
 interface ParallaxContextType {
   scrollY: number
@@ -24,11 +24,29 @@ export function ParallaxProvider({ children }: { children: React.ReactNode }) {
   const [mouseX, setMouseX] = useState(0)
   const [mouseY, setMouseY] = useState(0)
 
+  const scrollRafRef = useRef<number>(0)
+  const mouseRafRef = useRef<number>(0)
+  const mousePosRef = useRef({ x: 0, y: 0 })
+
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
+    const handleScroll = () => {
+      if (scrollRafRef.current) return
+      scrollRafRef.current = requestAnimationFrame(() => {
+        setScrollY(window.scrollY)
+        scrollRafRef.current = 0
+      })
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMouseX(e.clientX)
-      setMouseY(e.clientY)
+      mousePosRef.current.x = e.clientX
+      mousePosRef.current.y = e.clientY
+
+      if (mouseRafRef.current) return
+      mouseRafRef.current = requestAnimationFrame(() => {
+        setMouseX(mousePosRef.current.x)
+        setMouseY(mousePosRef.current.y)
+        mouseRafRef.current = 0
+      })
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -37,6 +55,8 @@ export function ParallaxProvider({ children }: { children: React.ReactNode }) {
     return () => {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("mousemove", handleMouseMove)
+      if (scrollRafRef.current) cancelAnimationFrame(scrollRafRef.current)
+      if (mouseRafRef.current) cancelAnimationFrame(mouseRafRef.current)
     }
   }, [])
 

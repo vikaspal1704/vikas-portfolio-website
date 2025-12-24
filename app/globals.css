@@ -127,6 +127,10 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Enable GPU acceleration globally */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
 
@@ -296,18 +300,52 @@
   }
 }
 
+/* Performance optimizations */
 .optimized-transform {
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .optimized-opacity {
   will-change: opacity;
 }
 
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 .glass,
 .glass-dark {
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+/* Optimize hover states for performance */
+button,
+a,
+[role="button"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize motion elements */
+[class*="motion"],
+[class*="animate"] {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Smooth scrolling with GPU acceleration */
+.scroll-smooth {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent layout shifts during animations */
+.prevent-layout-shift {
+  contain: layout style paint;
 }
 
 /* Adding utility to hide scrollbars for horizontal scroll experience */

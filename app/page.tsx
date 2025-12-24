@@ -3,7 +3,6 @@ import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Skills } from "@/components/skills"
 import { Projects } from "@/components/projects"
-import { ExperienceHorizontal } from "@/components/experience-horizontal"
 import { Testimonials } from "@/components/testimonials"
 import { Blog } from "@/components/blog"
 import { Contact } from "@/components/contact"
@@ -12,6 +11,7 @@ import { ParallaxProvider } from "@/components/parallax-provider"
 import { CustomCursor } from "@/components/custom-cursor"
 import { FloatingParticles } from "@/components/floating-particles"
 import { ScrollProgress } from "@/components/scroll-progress"
+import { Experience } from "@/components/experience"
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
         <About />
         <Skills />
         <Projects />
-        <ExperienceHorizontal />
+        <Experience />
         <Testimonials />
         <Blog />
         <Contact />

@@ -17,7 +17,12 @@ export function FloatingParticles() {
   const { mouseX, mouseY } = useParallax()
   const particlesRef = useRef<Particle[]>([])
   const animationRef = useRef<number>(0)
-  const lastMouseMoveRef = useRef({ x: 0, y: 0 })
+  const mousePosRef = useRef({ x: 0, y: 0 })
+
+  useEffect(() => {
+    mousePosRef.current.x = mouseX
+    mousePosRef.current.y = mouseY
+  }, [mouseX, mouseY])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -32,7 +37,7 @@ export function FloatingParticles() {
     }
 
     resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
+    window.addEventListener("resize", resizeCanvas, { passive: true })
 
     const particleCount = Math.min(30, Math.floor(window.innerWidth / 40))
     particlesRef.current = Array.from({ length: particleCount }, () => ({
@@ -60,15 +65,9 @@ export function FloatingParticles() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      const dx = mouseX - lastMouseMoveRef.current.x
-      const dy = mouseY - lastMouseMoveRef.current.y
-      if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
-        lastMouseMoveRef.current = { x: mouseX, y: mouseY }
-      }
-
       particlesRef.current.forEach((particle, i) => {
-        const dx = lastMouseMoveRef.current.x - particle.x
-        const dy = lastMouseMoveRef.current.y - particle.y
+        const dx = mousePosRef.current.x - particle.x
+        const dy = mousePosRef.current.y - particle.y
         const distance = Math.sqrt(dx * dx + dy * dy)
         const maxDistance = 150
 
@@ -116,7 +115,7 @@ export function FloatingParticles() {
       window.removeEventListener("resize", resizeCanvas)
       cancelAnimationFrame(animationRef.current)
     }
-  }, [mouseX, mouseY])
+  }, [])
 
   return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-50" aria-hidden="true" />
 }

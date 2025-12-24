@@ -8,7 +8,7 @@ import { useRef, useState, useEffect } from "react"
 import { CharReveal } from "./text-reveal"
 import { MagneticButton } from "./magnetic-button"
 
-const RESUME_URL = "https://drive.google.com/file/d/YOUR_RESUME_FILE_ID/view?usp=sharing"
+const RESUME_URL = "https://drive.google.com/file/d/1HxLwWeAZZJB_1mq73S36DKmEuaZVAxcL/view?usp=drive_link"
 
 export function HeroEnhanced() {
   const containerRef = useRef(null)
@@ -40,7 +40,7 @@ export function HeroEnhanced() {
 
   return (
     <section ref={containerRef} className="h-[150vh] relative">
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden px-4">
         <motion.div
           style={{
             x: mousePosition.x * 2,
@@ -86,8 +86,8 @@ export function HeroEnhanced() {
           />
         </motion.div>
 
-        <motion.div style={{ y, scale, opacity }} className="container mx-auto px-6 relative z-10">
-          <div className="max-w-6xl mx-auto">
+        <motion.div style={{ y, scale, opacity }} className="container mx-auto px-8 md:px-6 relative z-10 w-full">
+          <div className="max-w-6xl mx-auto w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -113,8 +113,8 @@ export function HeroEnhanced() {
               </motion.span>
             </motion.div>
 
-            <motion.div style={{ y: yText, filter: `blur(${blur}px)` }}>
-              <h1 className="text-[clamp(4rem,12vw,12rem)] font-black leading-[0.9] mb-12 tracking-tighter">
+            <motion.div style={{ y: yText, filter: `blur(${blur}px)` }} className="overflow-visible">
+              <h1 className="text-[clamp(3rem,10vw,10rem)] font-black leading-[0.95] mb-12 tracking-tighter overflow-visible">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -190,9 +190,9 @@ export function HeroEnhanced() {
                 className="flex items-center gap-6"
               >
                 {[
-                  { href: "https://github.com/vikas", icon: <Github size={32} />, label: "GitHub" },
-                  { href: "https://linkedin.com/in/vikas", icon: <Linkedin size={32} />, label: "LinkedIn" },
-                  { href: "mailto:vikas@example.com", icon: <Mail size={32} />, label: "Email" },
+                  { href: "https://github.com/vikaspal1704", icon: <Github size={32} />, label: "GitHub" },
+                  { href: "https://www.linkedin.com/in/vikaspal1704/", icon: <Linkedin size={32} />, label: "LinkedIn" },
+                  { href: "mailto:palv499@gmail.com", icon: <Mail size={32} />, label: "Email" },
                 ].map((social) => (
                   <motion.a
                     key={social.label}

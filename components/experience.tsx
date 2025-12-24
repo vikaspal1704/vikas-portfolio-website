@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { ArrowUpRight, Briefcase } from "lucide-react"
 
 const experiences = [
@@ -94,6 +94,24 @@ function ExperienceCard({
   index: number
   isInView: boolean
 }) {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const cardRef = useRef<HTMLDivElement>(null)
+  const rafRef = useRef<number>(0)
+  const posRef = useRef({ x: 0, y: 0 })
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    posRef.current.x = e.clientX - rect.left
+    posRef.current.y = e.clientY - rect.top
+
+    if (rafRef.current) return
+    rafRef.current = requestAnimationFrame(() => {
+      setMousePosition({ x: posRef.current.x, y: posRef.current.y })
+      rafRef.current = 0
+    })
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -30 }}
@@ -125,11 +143,29 @@ function ExperienceCard({
       </div>
 
       <motion.div
-        className={`glass rounded-xl p-6 transition-all duration-300 relative overflow-hidden ${
+        ref={cardRef}
+        className={`glass rounded-xl p-6 relative overflow-hidden ${
           exp.highlight ? "border-primary/30 glow" : "hover:glow"
         }`}
-        whileHover={{ x: 10 }}
+        onMouseMove={handleMouseMove}
+        whileHover={{
+          x: 10,
+          y: -4,
+          boxShadow: "0 12px 40px rgba(0,0,0,0.3)",
+        }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
+        style={{
+          willChange: "transform",
+        }}
       >
+        <motion.div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(var(--primary-rgb, 0,255,255),0.05), transparent 40%)`,
+          }}
+          transition={{ duration: 0 }}
+        />
+
         {exp.highlight && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -141,35 +177,57 @@ function ExperienceCard({
           </motion.div>
         )}
 
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">{exp.title}</h3>
+        <div className="mb-4 relative z-10">
+          <motion.h3
+            className="text-lg font-semibold"
+            whileHover={{ x: 4, color: "hsl(var(--primary))" }}
+            transition={{ duration: 0.15 }}
+          >
+            {exp.title}
+          </motion.h3>
           <div className="flex items-center gap-2 flex-wrap">
-            <a
+            <motion.a
               href={exp.companyUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline inline-flex items-center gap-1 group/link"
+              whileHover={{ x: 2 }}
+              transition={{ duration: 0.12 }}
             >
               {exp.company}
-              <ArrowUpRight
-                size={14}
-                className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-              />
-            </a>
-            <span className="text-xs px-2 py-0.5 bg-secondary/50 rounded-full text-muted-foreground">{exp.role}</span>
+              <motion.div whileHover={{ x: 2, y: -2 }} transition={{ duration: 0.1 }}>
+                <ArrowUpRight size={14} />
+              </motion.div>
+            </motion.a>
+            <motion.span
+              className="text-xs px-2 py-0.5 bg-secondary/50 rounded-full text-muted-foreground"
+              whileHover={{ scale: 1.05, backgroundColor: "hsl(var(--secondary))" }}
+              transition={{ duration: 0.12 }}
+            >
+              {exp.role}
+            </motion.span>
           </div>
         </div>
 
-        <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{exp.description}</p>
+        <p className="text-muted-foreground text-sm mb-4 leading-relaxed relative z-10">{exp.description}</p>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 relative z-10">
           {exp.technologies.map((tech, i) => (
             <motion.span
               key={tech}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: index * 0.15 + i * 0.05 }}
-              className="px-2.5 py-1 text-xs bg-secondary/50 text-secondary-foreground rounded-md"
+              whileHover={{
+                scale: 1.08,
+                y: -2,
+                backgroundColor: "hsl(var(--secondary))",
+                color: "hsl(var(--primary))",
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.12, ease: "easeOut" }}
+              className="px-2.5 py-1 text-xs bg-secondary/50 text-secondary-foreground rounded-md cursor-default"
+              style={{ willChange: "transform" }}
             >
               {tech}
             </motion.span>

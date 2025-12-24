@@ -59,47 +59,60 @@ const experiences = [
 ]
 
 export function ExperienceHorizontal() {
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLElement>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [scrollPosition, setScrollPosition] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
+  const wheelRafRef = useRef<number>(0)
+  const accumulatedDeltaRef = useRef(0)
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      if (!containerRef.current || !scrollContainerRef.current) return
+      if (!scrollContainerRef.current) return
 
-      const container = containerRef.current as HTMLElement
-      const rect = container.getBoundingClientRect()
-      const isInView = rect.top <= 100 && rect.bottom >= window.innerHeight
+      const scrollContainer = scrollContainerRef.current
+      const rect = scrollContainer.getBoundingClientRect()
 
-      if (!isInView) return
+      // Only activate horizontal scroll when the cards container is visible
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0
 
-      const maxScroll = scrollContainerRef.current.scrollWidth - scrollContainerRef.current.clientWidth
-      const atStart = scrollPosition <= 0
-      const atEnd = scrollPosition >= maxScroll - 10
+      if (!isVisible) return
 
-      // Allow vertical scroll only if at boundaries
-      if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) {
+      // Get current scroll state
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainer
+      const maxScroll = scrollWidth - clientWidth
+      const atStart = scrollLeft <= 2
+      const atEnd = scrollLeft >= maxScroll - 2
+
+      // If at start and scrolling up, allow vertical scroll to exit upward
+      if (atStart && e.deltaY < 0) {
         return
       }
 
-      // Prevent vertical scroll and scroll horizontally instead
-      e.preventDefault()
-      setIsScrolling(true)
-
-      const newPosition = Math.max(0, Math.min(maxScroll, scrollPosition + e.deltaY * 2))
-      setScrollPosition(newPosition)
-
-      if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollLeft = newPosition
+      // If at end and scrolling down, allow vertical scroll to continue downward
+      if (atEnd && e.deltaY > 0) {
+        return
       }
 
-      setTimeout(() => setIsScrolling(false), 150)
+      // Otherwise, lock vertical scroll and convert to horizontal
+      e.preventDefault()
+
+      accumulatedDeltaRef.current += e.deltaY
+
+      if (wheelRafRef.current) return
+      wheelRafRef.current = requestAnimationFrame(() => {
+        if (scrollContainer) {
+          scrollContainer.scrollLeft += accumulatedDeltaRef.current
+          accumulatedDeltaRef.current = 0
+        }
+        wheelRafRef.current = 0
+      })
     }
 
     window.addEventListener("wheel", handleWheel, { passive: false })
-    return () => window.removeEventListener("wheel", handleWheel)
-  }, [scrollPosition])
+    return () => {
+      window.removeEventListener("wheel", handleWheel)
+      if (wheelRafRef.current) cancelAnimationFrame(wheelRafRef.current)
+    }
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -131,8 +144,8 @@ export function ExperienceHorizontal() {
       <div className="relative h-[700px] md:h-[600px] overflow-hidden">
         <div
           ref={scrollContainerRef}
-          className="flex gap-8 px-6 overflow-x-auto scrollbar-hide h-full scroll-smooth"
-          style={{ scrollBehavior: isScrolling ? "auto" : "smooth" }}
+            className="flex gap-8 px-6 overflow-x-auto scrollbar-hide h-full snap-x snap-mandatory"
+          style={{ scrollBehavior: 'smooth' }}
         >
           {experiences.map((exp, index) => (
             <ExperienceCard key={`${exp.company}-${exp.period}`} exp={exp} index={index} />
@@ -171,22 +184,53 @@ export function ExperienceHorizontal() {
 }
 
 function ExperienceCard({ exp, index }: { exp: (typeof experiences)[0]; index: number }) {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    setMousePosition({ x, y })
+  }
+
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-200px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="w-[450px] md:w-[500px] flex-shrink-0 relative group"
+      className="w-[450px] md:w-[500px] flex-shrink-0 relative group snap-start"
+      onMouseMove={handleMouseMove}
+      style={{ perspective: "1000px" }}
     >
       <motion.div
         className="h-full glass-dark rounded-3xl p-8 border-2 border-cyan-500/20 relative overflow-hidden"
-        whileHover={{ borderColor: "rgba(0,255,255,0.5)", boxShadow: "0 0 60px rgba(0,255,255,0.3)" }}
-        transition={{ duration: 0.3 }}
+        whileHover={{
+          y: -8,
+          borderColor: "rgba(0,255,255,0.5)",
+          boxShadow: "0 20px 60px rgba(0,255,255,0.3), 0 0 80px rgba(0,255,255,0.2)",
+        }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
+        style={{
+          transformStyle: "preserve-3d",
+          willChange: "transform",
+        }}
       >
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100"
           initial={false}
+          transition={{ duration: 0.2 }}
+        />
+
+        <motion.div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,255,255,0.06), transparent 40%)`,
+          }}
+          transition={{ duration: 0 }}
         />
 
         {exp.highlight && (
@@ -212,25 +256,34 @@ function ExperienceCard({ exp, index }: { exp: (typeof experiences)[0]; index: n
           </div>
 
           <div className="mb-4">
-            <h3 className="text-2xl font-black text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            <motion.h3
+              className="text-2xl font-black text-white mb-2"
+              whileHover={{ x: 4, color: "rgba(0,255,255,1)" }}
+              transition={{ duration: 0.15 }}
+            >
               {exp.title}
-            </h3>
-            <a
+            </motion.h3>
+            <motion.a
               href={exp.companyUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-lg text-cyan-400 hover:text-cyan-300 font-bold group/link"
+              whileHover={{ x: 4 }}
+              transition={{ duration: 0.15 }}
             >
               <Briefcase size={16} />
               {exp.company}
-              <ArrowUpRight
-                size={14}
-                className="transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1"
-              />
-            </a>
-            <div className="mt-2 inline-block px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-bold">
+              <motion.div whileHover={{ x: 2, y: -2 }} transition={{ duration: 0.1 }}>
+                <ArrowUpRight size={14} />
+              </motion.div>
+            </motion.a>
+            <motion.div
+              className="mt-2 inline-block px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-bold"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(168,85,247,0.3)" }}
+              transition={{ duration: 0.15 }}
+            >
               {exp.role}
-            </div>
+            </motion.div>
           </div>
 
           <p className="text-white/70 text-sm leading-relaxed mb-4">{exp.description}</p>

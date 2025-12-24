@@ -36,10 +36,10 @@ export function Footer() {
               with a focus on performance and user experience.
             </p>
             <div className="flex items-center gap-4">
-              <SocialLink href="https://github.com/vikas" icon={<Github size={18} />} label="GitHub" />
-              <SocialLink href="https://linkedin.com/in/vikas" icon={<Linkedin size={18} />} label="LinkedIn" />
+              <SocialLink href="https://github.com/vikaspal1704" icon={<Github size={18} />} label="GitHub" />
+              <SocialLink href="https://www.linkedin.com/in/vikaspal1704/" icon={<Linkedin size={18} />} label="LinkedIn" />
               <SocialLink href="https://twitter.com/vikas" icon={<Twitter size={18} />} label="Twitter" />
-              <SocialLink href="mailto:vikas@example.com" icon={<Mail size={18} />} label="Email" />
+              <SocialLink href="mailto:palv499@gmail.com" icon={<Mail size={18} />} label="Email" />
             </div>
           </div>
 
@@ -71,7 +71,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">© {currentYear} Vikas (Suraj Pal). All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© {currentYear} Vikas Pal. All rights reserved.</p>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
             Built with <Heart size={14} className="text-primary" /> using Next.js & Tailwind
           </p>

@@ -4,7 +4,7 @@ import type React from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Mail, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, Loader2 } from "lucide-react"
+import { Mail, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, Loader2, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -18,6 +18,7 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -29,15 +30,45 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setTimeout(() => setIsSubmitted(false), 3000)
+    setError(null)
+
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      subject: formData.get('subject') as string,
+      message: formData.get('message') as string,
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message')
+      }
+
+      setIsSubmitted(true)
+      e.currentTarget.reset()
+      setTimeout(() => setIsSubmitted(false), 5000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.')
+      console.error('Contact form error:', err)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const socialLinks = [
-    { href: "https://github.com/vikas", icon: <Github size={18} />, label: "GitHub" },
-    { href: "https://linkedin.com/in/vikas", icon: <Linkedin size={18} />, label: "LinkedIn" },
+    { href: "https://github.com/vikaspal1704", icon: <Github size={18} />, label: "GitHub" },
+    { href: "https://www.linkedin.com/in/vikaspal1704/", icon: <Linkedin size={18} />, label: "LinkedIn" },
     { href: "https://twitter.com/vikas", icon: <Twitter size={18} />, label: "Twitter" },
   ]
 
@@ -71,7 +102,7 @@ export function Contact() {
 
             <div className="space-y-4 mb-8">
               {[
-                { icon: <Mail size={18} />, text: "vikas@example.com", href: "mailto:vikas@example.com" },
+                { icon: <Mail size={18} />, text: "palv499@gmail.com", href: "mailto:palv499@gmail.com" },
                 { icon: <MapPin size={18} />, text: "India", href: null },
               ].map((item, i) => (
                 <motion.div
@@ -139,6 +170,19 @@ export function Contact() {
                   <p className="text-lg font-medium">Message sent!</p>
                   <p className="text-muted-foreground text-sm">I&apos;ll get back to you soon.</p>
                 </motion.div>
+
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 flex items-start gap-3"
+                  >
+                    <AlertCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <p className="text-sm text-destructive font-medium">{error}</p>
+                    </div>
+                  </motion.div>
+                )}
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <motion.div
