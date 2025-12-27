@@ -1,4 +1,3 @@
-"use client"
 import { getBlogPosts } from "@/lib/blog-service"
 import { BlogListClient } from "@/components/blog-list-client"
 

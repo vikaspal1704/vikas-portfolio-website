@@ -1,5 +1,3 @@
-"use client"
-
 // To use:
 // 1. Create a Google Sheet with columns: slug, title, excerpt, content, date, readTime, tags (comma-separated)
 // 2. Publish it to web: File > Share > Publish to web > Select Sheet > CSV
