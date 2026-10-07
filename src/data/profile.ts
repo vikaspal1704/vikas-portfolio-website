@@ -39,10 +39,11 @@ export interface Project {
 export interface Role {
   id: string;
   company: string;
-  companyUrl: string;
+  companyUrl: string | null;
   title: string;
-  start: number;
-  end: number | null;
+  /** Display labels, e.g. "Aug 2025"; `end` null means present. */
+  start: string;
+  end: string | null;
   location: string | null;
   summary: string;
   highlights: string[];
@@ -61,9 +62,9 @@ export const profile = {
   handle: 'vikaspal1704',
   headline: 'Fintech × AI engineer',
   pitch:
-    'I build the machinery of markets: matching engines, market-data feeds, FIX sessions and trading UIs, and I ship AI that runs where the data lives.',
+    'I build real-time trading infrastructure and AI platforms that stay up when traffic and token bills spike. Off the clock, I build the machinery of markets: matching engines, market-data feeds and FIX sessions.',
   location: 'India (IST, UTC+5:30)',
-  remote: 'Open to remote roles with US, EU and Singapore teams',
+  remote: 'Open to remote Senior / Staff roles on global teams, with US-hours overlap',
   email: 'palv499@gmail.com',
   links: {
     github: 'https://github.com/vikaspal1704',
@@ -73,70 +74,71 @@ export const profile = {
   resumeUrl: null as string | null,
   // TODO(vikas): add a Calendly / Cal.com link if you want "Book a call".
   calendarUrl: null as string | null,
-  // TODO(vikas): degree, institution, year.
-  education: null as string | null,
-  careerStart: 2020,
+  education: 'BE in Computer Science, LDRP Institute of Technology & Research (Gujarat Technological University), 2019–2023' as string | null,
+  /** First full-time engineering role (CultureX, July 2022). */
+  careerStart: { year: 2022, month: 7 },
   lookingFor: [
+    'Backend / platform engineering: real-time, distributed, latency-sensitive systems',
+    'AI infrastructure: production LLM platforms, cost and performance, RAG, agents',
     'Trading infrastructure: matching, market data, order routing, FIX',
-    'AI engineering: LLM products, RAG, agents, on-device inference',
-    'Full-stack fintech product: real-time trading UIs plus the backend behind them',
-    'Founding / early-stage roles where one engineer owns the whole system',
+    'Senior / Staff scope, or founding roles where one engineer owns the whole system',
   ],
   workingStyle: [
+    'Production first: services that stay up under peak, with uptime, cost and deploy speed treated as features (99.9% uptime, ~40% LLM cost cut, ~50% faster deploys at Zeus Learning).',
     'Docs first: every flagship repo starts with a PRD, TRD, API contract, acceptance criteria and an AGENT_BRIEF so humans and AI coding agents can build without guessing.',
     'Correctness is proven, not claimed: differential tests against a reference engine, golden vectors, Playwright end-to-end tests and live smoke tests in CI.',
     'Measure before optimising: Arena’s p99 dropped from 16.8 µs to 1.6 µs once profiling showed page faults, not matching logic, caused the tail.',
-    'Honest numbers: integer paise, no floats in money paths, estimates are labelled as estimates.',
+    'Leads by shipping: led 4 developers to deliver a reporting SDK under hard client deadlines.',
   ],
 };
 
 export const roles: Role[] = [
   {
     id: 'viewtrade',
-    company: 'ViewTrade',
+    company: 'ViewTrade Holding Corp.',
     companyUrl: 'https://viewtrade.com',
     title: 'Software Development Engineer',
-    start: 2023,
+    start: 'Aug 2025',
     end: null,
-    location: 'GIFT City, India',
+    location: 'GIFT City, Gandhinagar',
     summary:
-      'Building Bridge, ViewTrade’s global-access platform for international stock trading: real-time market data, charting and order execution.',
+      'Building real-time trading infrastructure for API-driven brokerage and wealth-tech platforms: WebSockets, distributed systems and latency-sensitive request paths.',
     highlights: [
-      'High-performance React interfaces fed by real-time market data over WebSockets',
-      'Advanced charting with D3.js and order-execution flows',
-      'Working on trading-infrastructure systems, moving from frontend architecture into backend',
-      // TODO(vikas): add 1–2 quantified outcomes (latency, users, volume, a feature you owned end to end).
+      'Production services where correctness and uptime matter more than demo velocity',
+      'Handles trading-specific failure modes: stale quotes, fan-out and backpressure',
+      'Helps engineering adopt AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability',
+      // TODO(vikas): add 1–2 quantified outcomes when you can share them.
     ],
-    stack: ['React', 'TypeScript', 'Redux Toolkit', 'WebSockets', 'D3.js'],
+    stack: ['WebSockets', 'Distributed systems', 'Python', 'TypeScript', 'Claude tooling'],
   },
   {
-    id: 'zeus-fs',
+    id: 'zeus',
     company: 'Zeus Learning',
     companyUrl: 'https://zeuslearning.com',
-    title: 'Full Stack Developer',
-    start: 2021,
-    end: 2023,
-    location: null,
-    summary:
-      'Led development of Test Maverick, an AI-powered test-taking platform, across frontend, APIs, Python ML services and DevOps.',
+    title: 'Software Developer',
+    start: 'Jan 2023',
+    end: 'Jul 2025',
+    location: 'Mumbai',
+    summary: 'Built an AI-powered test platform on Next.js and Python/Django, and ran it in production at scale.',
     highlights: [
-      'Owned the stack end to end: React frontend, Node.js APIs, Python ML services, AWS infrastructure',
-      'Designed the architecture for concurrent test sessions',
-      'Containerised services with Docker and ran CI/CD',
+      '~50,000 requests a day at 99.9% uptime under peak',
+      'Semantic caching that cut LLM costs ~40% without changing the model family',
+      'Led 4 developers to deliver a reporting SDK under hard client deadlines',
+      'Set up CI/CD with DevOps that made deploys ~50% faster; modular patterns cut debugging time ~20%',
     ],
-    stack: ['React', 'Node.js', 'Python', 'AWS', 'Docker', 'PostgreSQL', 'CI/CD'],
+    stack: ['Next.js', 'Python', 'Django', 'LLMs', 'Semantic caching', 'CI/CD'],
   },
   {
-    id: 'zeus-jr',
-    company: 'Zeus Learning',
-    companyUrl: 'https://zeuslearning.com',
-    title: 'Junior Software Developer',
-    start: 2020,
-    end: 2021,
+    id: 'culturex',
+    company: 'CultureX Entertainment',
+    companyUrl: null,
+    title: 'Product Development Engineer',
+    start: 'Jul 2022',
+    end: 'Dec 2022',
     location: null,
-    summary: 'Started on education-technology products: frontend interfaces and backend services in an agile team.',
-    highlights: ['Frontend interfaces and backend contributions', 'Enterprise development practices in an agile team'],
-    stack: ['React', 'JavaScript', 'Node.js', 'MongoDB'],
+    summary: 'Designed and built web pages and features for CreatorX’s own product in a team of 4 developers.',
+    highlights: ['Shipped product features on a team of 4', 'Code reviews: finding and fixing bugs before release'],
+    stack: ['Web', 'JavaScript'],
   },
 ];
 
@@ -349,31 +351,35 @@ export const skills: Skill[] = [
   { name: 'P&L, charges, FIFO', group: 'Trading systems', evidence: ['fo-wrapped', 'arena'] },
   { name: 'Low-latency / perf', group: 'Trading systems', evidence: ['arena'] },
   { name: 'Rust', group: 'Backend', evidence: ['arena'] },
-  { name: 'Python', group: 'Backend', evidence: ['recruiter-backend', 'live-orderbook-feed', 'mini-matching-engine', 'zeus-fs'] },
-  { name: 'TypeScript / Node.js', group: 'Backend', evidence: ['fix-lab', 'arena', 'fo-wrapped', 'viewtrade', 'zeus-fs'] },
-  { name: 'FastAPI', group: 'Backend', evidence: ['recruiter-backend', 'live-orderbook-feed'] },
+  { name: 'Python', group: 'Backend', evidence: ['recruiter-backend', 'live-orderbook-feed', 'mini-matching-engine', 'zeus'] },
+  { name: 'TypeScript / Node.js', group: 'Backend', evidence: ['fix-lab', 'arena', 'fo-wrapped', 'viewtrade'] },
+  { name: 'Django / FastAPI', group: 'Backend', evidence: ['zeus', 'recruiter-backend', 'live-orderbook-feed'] },
+  { name: 'Distributed systems', group: 'Backend', evidence: ['viewtrade', 'live-orderbook-feed', 'fix-lab'] },
   { name: 'WebSockets / TCP', group: 'Backend', evidence: ['live-orderbook-feed', 'fix-lab', 'viewtrade'] },
-  { name: 'PostgreSQL / Supabase', group: 'Backend', evidence: ['recruiter-backend', 'zeus-fs'] },
-  { name: 'React', group: 'Frontend', evidence: ['viewtrade', 'fix-lab', 'arena', 'fo-wrapped', 'zeus-fs'] },
-  { name: 'Redux Toolkit', group: 'Frontend', evidence: ['viewtrade', 'fix-lab'] },
-  { name: 'D3 / charting', group: 'Frontend', evidence: ['viewtrade'] },
+  { name: 'PostgreSQL / Supabase', group: 'Backend', evidence: ['recruiter-backend'] },
+  { name: 'React', group: 'Frontend', evidence: ['zeus', 'fix-lab', 'arena', 'fo-wrapped'] },
+  { name: 'Redux Toolkit', group: 'Frontend', evidence: ['fix-lab'] },
+  { name: 'Next.js', group: 'Frontend', evidence: ['zeus'] },
   { name: 'WebAssembly / Workers', group: 'Frontend', evidence: ['arena', 'fo-wrapped', 'this-site'] },
-  { name: 'LLM apps (OpenAI, JSON mode)', group: 'AI / LLM', evidence: ['recruiter-backend', 'smpa', 'zeus-fs'] },
+  { name: 'Production LLM platforms', group: 'AI / LLM', evidence: ['zeus', 'recruiter-backend', 'smpa'] },
+  { name: 'LLM cost (semantic caching)', group: 'AI / LLM', evidence: ['zeus'] },
   { name: 'RAG / vector search', group: 'AI / LLM', evidence: ['recruiter-backend', 'smpa', 'this-site'] },
   { name: 'On-device LLM (WebLLM)', group: 'AI / LLM', evidence: ['this-site'] },
   { name: 'Agent-ready specs', group: 'AI / LLM', evidence: ['mini-matching-engine', 'live-orderbook-feed', 'arena'] },
   { name: 'Testing (diff, e2e, golden)', group: 'Infra & quality', evidence: ['arena', 'fix-lab', 'recruiter-backend'] },
-  { name: 'Docker / CI/CD', group: 'Infra & quality', evidence: ['recruiter-backend', 'zeus-fs', 'fix-lab'] },
-  { name: 'AWS', group: 'Infra & quality', evidence: ['zeus-fs'] },
+  { name: 'Docker / CI/CD', group: 'Infra & quality', evidence: ['recruiter-backend', 'zeus', 'fix-lab'] },
+  { name: 'Reliability (99.9% uptime)', group: 'Infra & quality', evidence: ['zeus', 'viewtrade'] },
 ];
 
-export const yearsExperience = (now = new Date()) => now.getFullYear() - profile.careerStart;
+/** Whole years of full-time engineering experience. */
+export const yearsExperience = (now = new Date()) =>
+  Math.floor((now.getFullYear() * 12 + now.getMonth() + 1 - (profile.careerStart.year * 12 + profile.careerStart.month)) / 12);
 
 /** Lookup for evidence ids → display name + link. */
 export function evidenceRef(id: string): { name: string; href: string } | null {
   const p = projects.find((x) => x.id === id);
   if (p) return { name: p.name, href: p.live ?? p.code };
   const r = roles.find((x) => x.id === id);
-  if (r) return { name: `${r.title}, ${r.company}`, href: r.companyUrl };
+  if (r) return { name: `${r.title}, ${r.company}`, href: r.companyUrl ?? profile.links.linkedin };
   return null;
 }

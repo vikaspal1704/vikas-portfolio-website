@@ -20,18 +20,19 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
       <div className="wrap">
         <div className="eyebrow reveal">01 · The 60-second brief</div>
         <h2 className="h2 reveal" id="brief-h">
-          Markets infrastructure, <em>built and proven.</em>
+          Production AI and markets infra, <em>proven.</em>
         </h2>
         <p className="lede reveal">If you only have a minute, read this.</p>
         <div className="brief reveal">
           <div>
             <h3>Now</h3>
-            <p className="kpi mono">~{yearsExperience()} yrs</p>
+            <p className="kpi mono">{yearsExperience()}+ yrs</p>
             <ul>
               <li>
-                <strong style={{ color: 'var(--text)', fontWeight: 500 }}>SDE at ViewTrade</strong>, GIFT City: real-time trading interfaces and infrastructure for Bridge, a platform for international stock trading
+                <strong style={{ color: 'var(--text)', fontWeight: 500 }}>SDE at ViewTrade</strong>, GIFT City: real-time trading infrastructure for API-driven brokerage and wealth-tech platforms
               </li>
-              <li>Before that, at Zeus Learning: led Test Maverick, an AI-powered test platform, across the full stack</li>
+              <li>Zeus Learning: a production AI platform with 99.9% uptime and ~40% lower LLM costs, and led a team of 4</li>
+              <li>BE Computer Science, GTU (2023)</li>
             </ul>
           </div>
           <div>
@@ -40,7 +41,8 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
             <ul>
               <li>Rust matching engine, p50 ≈ 350 ns, diff-tested on 1.5M commands</li>
               <li>FIX 4.2–5.0 SP2 session engine, L2 feed with gap recovery</li>
-              <li>LLM + vector-search backend; an on-device LLM on this page</li>
+              <li>Semantic caching cut LLM spend ~40% in production</li>
+              <li>An on-device LLM on this page, at zero cost to run</li>
             </ul>
           </div>
           <div>
@@ -233,10 +235,15 @@ export function Ledger() {
             .map(({ r, seq, fp }) => (
               <div className="lrow" key={r.id}>
                 <div className="seq">#{String(seq).padStart(4, '0')}<br />{fp}</div>
-                <div className="when">{r.start}–{r.end ?? 'now'}</div>
+                <div className="when">{r.start} –<br />{r.end ?? 'now'}</div>
                 <div>
                   <h3>
-                    {r.title} · <a href={r.companyUrl} target="_blank" rel="noreferrer">{r.company} ↗</a>
+                    {r.title} ·{' '}
+                    {r.companyUrl ? (
+                      <a href={r.companyUrl} target="_blank" rel="noreferrer">{r.company} ↗</a>
+                    ) : (
+                      <span className="muted" style={{ fontWeight: 400 }}>{r.company}</span>
+                    )}
                   </h3>
                   <p>{r.summary}</p>
                   <ul>

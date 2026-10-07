@@ -16,7 +16,7 @@ export interface Doc {
 }
 
 const bullets = (xs: string[]) => xs.map((x) => `- ${x}`).join('\n');
-const period = (start: number, end: number | null) => `${start}–${end ?? 'present'}`;
+const period = (start: string, end: string | null) => `${start} – ${end ?? 'present'}`;
 
 function projectDocs(): Doc[] {
   return projects.map((p) => ({
@@ -53,11 +53,11 @@ function curatedDocs(): Doc[] {
       id: 'why-hire',
       title: 'Why hire Vikas',
       answer: [
-        `${profile.name} has about ${yrs} years of experience and works where fintech meets AI. He builds the systems markets run on, ships them as working demos, and proves them with tests.`,
-        `- Trading-systems depth: a Rust matching engine at ~2M orders/s (p50 ≈ 350 ns), an L2 market-data feed with gap recovery, and a FIX session engine built from scratch.`,
-        `- Production fintech: currently an SDE at ViewTrade building Bridge, a global-access platform for international stock trading.`,
-        `- AI-native: LLM resume parsing with vector search (Pinecone), and this site runs an open-source LLM on your GPU with grounded retrieval.`,
-        `- Engineering discipline: docs-first specs that AI agents can build from, differential tests, golden vectors, e2e tests and honest numbers.`,
+        `${profile.name} has ${yrs}+ years building production systems where fintech meets AI. He has already paid the production tax: uptime, token bills, latency and deadlines.`,
+        `- Production AI at scale: at Zeus Learning he ran an AI test platform (Next.js + Python/Django) at ~50,000 requests a day with 99.9% uptime, and his semantic caching cut LLM costs ~40%.`,
+        `- Trading infrastructure now: SDE at ViewTrade, building real-time WebSocket and distributed-systems infrastructure for API-driven brokerage platforms.`,
+        `- Depth beyond the day job: a Rust matching engine at ~2M orders/s (p50 ≈ 350 ns), an L2 feed with gap recovery, and a FIX session engine built from scratch.`,
+        `- Leadership and delivery: led 4 developers to ship a reporting SDK under hard client deadlines, and made deploys ~50% faster with CI/CD.`,
       ].join('\n'),
       keywords: ['why', 'hire', 'strength', 'stand', 'out', 'best', 'summary', 'pitch', 'overview', 'should', 'good', 'value', 'unique', 'about', 'who'],
       refs: ['arena', 'viewtrade', 'recruiter-backend', 'this-site'],
@@ -67,11 +67,12 @@ function curatedDocs(): Doc[] {
       id: 'brief',
       title: 'The 60-second brief',
       answer: [
-        `${profile.headline}, ${profile.location}. ${profile.remote}.`,
-        `- Now: ${roles[0]!.title} at ${roles[0]!.company} (${period(roles[0]!.start, roles[0]!.end)}), on real-time trading interfaces and infrastructure.`,
-        `- Before: Zeus Learning (2020–2023), where he led Test Maverick, an AI-powered test platform, across the full stack.`,
-        `- Proof: ${featured.map((p) => p.name).join(', ')}, all open source and most of them running live.`,
-        `- Looking for: trading infra, AI engineering, full-stack fintech or founding-engineer roles.`,
+        `${profile.headline}, ${yrs}+ years. ${profile.location}. ${profile.remote}.`,
+        `- Now: ${roles[0]!.title} at ViewTrade (since ${roles[0]!.start}), building real-time trading infrastructure for brokerage and wealth-tech APIs.`,
+        `- Before: Zeus Learning (Jan 2023 – Jul 2025), on a production AI platform: 99.9% uptime, ~40% LLM cost cut, led a team of 4.`,
+        `- Proof you can run: ${featured.map((p) => p.name).join(', ')}, all open source and most of them live.`,
+        `- Education: BE Computer Science, Gujarat Technological University (2023).`,
+        `- Looking for: Senior / Staff backend, platform, AI-infra or trading-infra roles, remote.`,
       ].join('\n'),
       keywords: ['brief', 'tldr', 'summary', 'quick', 'short', 'overview', 'introduce', 'yourself', 'bio', 'background', 'resume', 'cv'],
       refs: ['viewtrade', 'arena', 'fo-wrapped'],
@@ -81,14 +82,15 @@ function curatedDocs(): Doc[] {
       id: 'ai',
       title: 'AI and LLM experience',
       answer: [
-        `He builds applied AI: LLM features inside real products, retrieval over his own data, and on-device inference.`,
+        `He builds production AI platforms, and treats cost and reliability as features.`,
+        `- Zeus Learning: AI-powered test platform at ~50,000 requests a day and 99.9% uptime. Semantic caching cut LLM costs ~40% without changing the model family.`,
+        `- ViewTrade: drives adoption of AI-native, Claude-ecosystem tooling for developer productivity, without trading away reliability.`,
         ...aiProjects.map((p) => `- ${p.name}: ${p.signal}`),
-        `- Zeus Learning: Python ML services behind Test Maverick, an AI-powered test-taking platform.`,
         `- Workflow: his flagship repos ship an AGENT_BRIEF and a full spec so AI coding agents can implement them without guessing.`,
-        `He is not presenting himself as an ML researcher who trains frontier models. His strength is engineering LLMs into reliable products.`,
+        `His strength is engineering LLMs into reliable, cost-efficient products, not training models from scratch.`,
       ].join('\n'),
-      keywords: ['ai', 'ml', 'llm', 'gpt', 'openai', 'rag', 'embedding', 'vector', 'agent', 'agents', 'genai', 'machine', 'learning', 'langchain', 'langflow', 'pinecone', 'model', 'inference', 'webgpu', 'chatbot', 'prompt'],
-      refs: aiProjects.map((p) => p.id).concat('zeus-fs'),
+      keywords: ['cost', 'caching', 'semantic', 'token', 'ai', 'ml', 'llm', 'gpt', 'openai', 'rag', 'embedding', 'vector', 'agent', 'agents', 'genai', 'machine', 'learning', 'langchain', 'langflow', 'pinecone', 'model', 'inference', 'webgpu', 'chatbot', 'prompt'],
+      refs: aiProjects.map((p) => p.id).concat('zeus'),
       follow: ['How does this site’s AI work?', 'Tell me about Recruiter Backend'],
     },
     {
@@ -114,7 +116,7 @@ function curatedDocs(): Doc[] {
         `- Market data: snapshot + incremental deltas, sequence numbers, gap detection, heartbeats, backpressure (Live Orderbook Feed, Arena)`,
         `- Order entry: FIX 4.2–5.0 SP2 session layer with resend and gap fill (FIX Protocol Lab)`,
         `- Post-trade: FIFO round trips, Indian exchange charges, P&L analytics (F&O Wrapped, Arena)`,
-        `- In production: real-time trading UIs at ViewTrade`,
+        `- In production: real-time WebSocket trading infrastructure at ViewTrade (stale quotes, fan-out, backpressure)`,
       ].join('\n'),
       keywords: ['trading', 'exchange', 'market', 'order', 'book', 'orderbook', 'fix', 'oms', 'broker', 'stock', 'equities', 'derivatives', 'futures', 'options', 'capital', 'markets', 'fintech', 'finance', 'quant'],
       refs: ['arena', 'live-orderbook-feed', 'fix-lab', 'fo-wrapped', 'viewtrade'],
@@ -160,7 +162,7 @@ function curatedDocs(): Doc[] {
     {
       id: 'location',
       title: 'Location and availability',
-      answer: `${profile.location}. ${profile.remote}. Notice period, relocation and visa details aren’t published here, so email ${profile.email} for those.`,
+      answer: `${profile.location}. ${profile.remote}. He wants US-hours overlap. Notice period, relocation and visa details aren’t published here, so email ${profile.email} for those.`,
       keywords: ['location', 'where', 'based', 'timezone', 'time', 'zone', 'remote', 'relocate', 'relocation', 'visa', 'notice', 'available', 'availability', 'start', 'onsite', 'hybrid', 'country', 'india'],
       refs: [],
       follow: ['How do I contact him?'],
@@ -182,6 +184,20 @@ function curatedDocs(): Doc[] {
       keywords: ['salary', 'compensation', 'pay', 'ctc', 'expected', 'expectation', 'rate', 'money', 'package'],
       refs: [],
       follow: ['What is he looking for next?'],
+    },
+    {
+      id: 'leadership',
+      title: 'Leadership and impact',
+      answer: [
+        `- Led 4 developers to deliver a reporting SDK under hard client deadlines (Zeus Learning)`,
+        `- Set up CI/CD with DevOps that made deploys ~50% faster; modular patterns cut debugging time ~20%`,
+        `- Owned production reliability: 99.9% uptime under peak at ~50,000 requests a day`,
+        `- Cut LLM spend ~40% with semantic caching`,
+        `- Earlier, led a community engagement team at Break The Barrier (2021–2022)`,
+      ].join('\n'),
+      keywords: ['lead', 'leadership', 'team', 'manage', 'mentor', 'impact', 'senior', 'staff', 'ownership', 'deliver', 'deadline', 'metrics', 'results', 'achievements', 'uptime'],
+      refs: ['zeus'],
+      follow: ['Why hire Vikas?', 'What AI has he shipped?'],
     },
     {
       id: 'stack',
@@ -236,10 +252,10 @@ function curatedDocs(): Doc[] {
       title: 'Gaps and growth areas',
       answer: [
         `Being straight about what the public evidence doesn’t show:`,
-        `- No public C++, Java or Go work. His systems-level work is in Rust, with Python and TypeScript around it.`,
-        `- No Kafka or Kubernetes in the repos. His messaging work is WebSocket and TCP fan-out with sequencing; deployment work is Docker and CI.`,
+        `- No C++, Java or Go on his record. His production work is Python/Django and TypeScript/Next.js, and his systems-level work is in Rust.`,
+        `- No Kafka or Kubernetes on his record. His messaging work is WebSocket and TCP fan-out with sequencing; deployment work is Docker and CI.`,
         `- Applied AI rather than model training: LLM integration, retrieval and on-device inference.`,
-        `- His ViewTrade work is mostly frontend so far, and he is moving into backend and trading infrastructure.`,
+        `- Rust and the exchange internals (matching, FIX) are personal projects rather than his day job, though they are tested and benchmarked to a production standard.`,
       ].join('\n'),
       keywords: ['weakness', 'gap', 'gaps', 'missing', 'lack', 'improve', 'growth', 'not', 'cpp', 'c++', 'java', 'go', 'golang', 'kafka', 'kubernetes', 'k8s', 'weak'],
       refs: [],

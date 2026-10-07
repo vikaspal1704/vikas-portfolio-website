@@ -69,8 +69,25 @@ describe('fit check', () => {
     expect(r.coverage).toBeGreaterThan(50);
     expect(r.coverage).toBeLessThan(100);
     expect(r.yearsAsked).toBe(4);
+    expect(by('Reliability / production ops')).toBeUndefined();
   });
   it('does not confuse JavaScript with Java', () => {
     expect(fitCheck('Strong JavaScript skills').lines.some((l) => l.label === 'Java / JVM')).toBe(false);
+  });
+});
+
+describe('production record', () => {
+  it('surfaces LLM cost work', () => {
+    expect(top('Has he reduced LLM costs?')?.doc.id).toBe('ai');
+    expect(fitCheck('Experience optimizing LLM inference cost and semantic caching').lines.find((l) => l.label === 'LLM cost / performance')?.strength).toBe('strong');
+  });
+  it('answers leadership questions', () => {
+    expect(top('Has he led a team?')?.doc.id).toBe('leadership');
+  });
+  it('a senior title alone is not leadership evidence', () => {
+    expect(fitCheck('Senior Software Engineer, Python').lines.some((l) => l.label === 'Leadership / mentoring')).toBe(false);
+  });
+  it('knows his education', () => {
+    expect(top('what degree does he have')?.doc.answer).toContain('Gujarat Technological University');
   });
 });

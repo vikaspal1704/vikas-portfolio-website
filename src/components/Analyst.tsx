@@ -86,7 +86,7 @@ function FitTicket({ fit }: { fit: FitResult }) {
       <div className="ticket-f">
         {fit.yearsAsked != null && (
           <div>
-            Experience: role asks {fit.yearsAsked}+ yrs · Vikas has ~{fit.yearsHave} yrs ({profile.careerStart}–now){' '}
+            Experience: role asks {fit.yearsAsked}+ yrs · Vikas has ~{fit.yearsHave} yrs (since {profile.careerStart.year}){' '}
             {fit.yearsHave >= fit.yearsAsked ? <span className="up">✓</span> : <span className="ai">(below the ask)</span>}
           </div>
         )}
