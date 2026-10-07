@@ -1,30 +1,37 @@
-# Vikas portfolio website
+# VIKAS/LIVE: Vikas Pal's portfolio
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+**Live:** https://vikaspal1704.github.io/vikas-portfolio-website/
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/vikaspaldev1234-4759s-projects/v0-vikas-portfolio-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/vApSP1k8q2j)
+A portfolio that runs an exchange. When the page opens, the Rust matching engine from
+[Arena](https://github.com/vikaspal1704/arena), compiled to WebAssembly, starts in a Web Worker. It draws a live
+liquidity heatmap of its order book and benchmarks itself on the visitor's device ("orders matched in your browser").
 
-## Overview
+## AI analyst: free, open source, no server
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- **Instant:** BM25 retrieval over a knowledge base generated from `src/data/profile.ts`. Answers cite their sources,
+  and anything not covered is reported as not covered.
+- **Local LLM (optional):** [WebLLM](https://github.com/mlc-ai/web-llm) runs Qwen2.5-1.5B-Instruct on the visitor's GPU
+  via WebGPU. It is grounded on the retrieved documents only. It needs no API key, costs nothing and sends no data anywhere.
+- **JD fit check:** paste a job description and each requirement is mapped to evidence. Gaps are shown as gaps.
 
-## Deployment
+## Editing content
 
-Your project is live at:
+Everything the site and the AI say comes from **`src/data/profile.ts`**. Fields marked `TODO(vikas)`
+(education, résumé PDF, calendar link, quantified ViewTrade impact) are hidden until they are filled in.
+Put a résumé at `public/vikas-pal-resume.pdf` and set `resumeUrl: 'vikas-pal-resume.pdf'`.
 
-**[https://vercel.com/vikaspaldev1234-4759s-projects/v0-vikas-portfolio-website](https://vercel.com/vikaspaldev1234-4759s-projects/v0-vikas-portfolio-website)**
+## Develop
 
-## Build your app
+```bash
+npm ci
+npm run dev     # http://localhost:5173
+npm test        # retrieval + fit-check tests
+npm run build   # static site in dist/
+```
 
-Continue building your app on:
+`src/engine/arena.wasm` is built from Arena with
+`cargo build --release -p arena-wasm --target wasm32-unknown-unknown`.
 
-**[https://v0.app/chat/vApSP1k8q2j](https://v0.app/chat/vApSP1k8q2j)**
+Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
 
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Stack: React 19 · TypeScript · Vite · Rust→WASM · Web Workers · Canvas · WebLLM/WebGPU.
