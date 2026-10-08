@@ -41,17 +41,18 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
             <ul>
               <li>Rust matching engine, p50 ≈ 350 ns, diff-tested on 1.5M commands</li>
               <li>FIX 4.2–5.0 SP2 session engine, L2 feed with gap recovery</li>
-              <li>Semantic caching cut LLM spend ~40% in production</li>
+              <li>Distributed systems on .NET and AWS (EC2, ECS/EKS, Lambda, SQS, Kinesis)</li>
               <li>An on-device LLM on this page, at zero cost to run</li>
             </ul>
           </div>
           <div>
-            <h3>Next</h3>
-            <p className="kpi mono ai">Remote</p>
+            <h3>Impact</h3>
+            <p className="kpi mono ai">−40%</p>
             <ul>
-              {profile.lookingFor.map((l) => (
-                <li key={l}>{l}</li>
-              ))}
+              <li>LLM costs cut by semantic caching, in production</li>
+              <li>99.9% uptime at ~50,000 requests a day</li>
+              <li>~50% faster deploys after setting up CI/CD</li>
+              <li>Open to remote, hybrid or on-site roles anywhere in the world</li>
             </ul>
           </div>
         </div>
@@ -146,10 +147,10 @@ export function SkillBook({ onAsk }: { onAsk: (q: string) => void }) {
       <div className="wrap">
         <div className="eyebrow reveal">03 · Order book</div>
         <h2 className="h2 reveal" id="book-h">
-          What I bring, <em>what I’m after.</em>
+          What I bring, <em>what it delivered.</em>
         </h2>
         <p className="lede reveal">
-          Bids are skills, sized by how many shipped projects or roles prove them. Click one to see the evidence. Asks are what I’m looking for. Where they cross, we should talk.
+          Bids are skills, sized by how many shipped projects or roles prove them. Click one to see the evidence. Asks are the outcomes those skills have already delivered.
         </p>
         <div className="book reveal">
           <div className="book-col">
@@ -180,11 +181,11 @@ export function SkillBook({ onAsk }: { onAsk: (q: string) => void }) {
             ))}
           </div>
           <div className="book-col">
-            <div className="book-h"><span>#</span><span className="down">Ask · role</span></div>
-            {profile.lookingFor.map((l, i) => (
-              <div className="book-row ask ask-row" key={l}>
-                <span className="q">0{i + 1}</span>
-                <span style={{ textAlign: 'right' }}>{l}</span>
+            <div className="book-h"><span>metric</span><span className="down">Ask · delivered</span></div>
+            {profile.outcomes.map((o) => (
+              <div className="book-row ask ask-row" key={o.label}>
+                <span className="q" style={{ color: 'var(--text)', fontWeight: 600 }}>{o.metric}</span>
+                <span style={{ textAlign: 'right' }}>{o.label}</span>
                 <span className="bar" style={{ width: '100%' }} />
               </div>
             ))}

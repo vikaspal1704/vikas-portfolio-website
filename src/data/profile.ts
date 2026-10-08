@@ -64,7 +64,7 @@ export const profile = {
   pitch:
     'I created and lead ViewTrade’s unified front-end platform for brokerages, I build real-time trading infrastructure, and I ship AI platforms that stay up when traffic and token bills spike. Off the clock, I build matching engines, market-data feeds and FIX sessions.',
   location: 'India (IST, UTC+5:30)',
-  remote: 'Open to remote Senior / Staff roles on global teams, with US-hours overlap',
+  remote: 'Open to remote, hybrid or on-site roles anywhere in the world, including relocation',
   email: 'palv499@gmail.com',
   links: {
     github: 'https://github.com/vikaspal1704',
@@ -77,11 +77,14 @@ export const profile = {
   education: 'BE in Computer Science, LDRP Institute of Technology & Research (Gujarat Technological University), 2019–2023' as string | null,
   /** First full-time engineering role (CultureX, July 2022). */
   careerStart: { year: 2022, month: 7 },
-  lookingFor: [
-    'Backend / platform engineering: real-time, distributed, latency-sensitive systems',
-    'AI infrastructure: production LLM platforms, cost and performance, RAG, agents',
-    'Trading infrastructure: matching, market data, order routing, FIX',
-    'Senior / Staff scope, or founding roles where one engineer owns the whole system',
+  /** Outcomes already delivered; shown opposite the skills in the order book. */
+  outcomes: [
+    { metric: 'from scratch', label: 'Created and leads ViewTrade’s unified front-end platform, with a global team' },
+    { metric: '99.9%', label: 'Uptime under peak at ~50,000 requests/day (Zeus Learning)' },
+    { metric: '−40%', label: 'LLM costs, via semantic caching, with no model change' },
+    { metric: '~50%', label: 'Faster deploys after setting up CI/CD with DevOps' },
+    { metric: '4 devs', label: 'Led to ship a reporting SDK under hard client deadlines' },
+    { metric: '~2M/s', label: 'Orders matched by his Rust engine, p50 ≈ 350 ns (Arena)' },
   ],
   workingStyle: [
     'Production first: services that stay up under peak, with uptime, cost and deploy speed treated as features (99.9% uptime, ~40% LLM cost cut, ~50% faster deploys at Zeus Learning).',
@@ -110,7 +113,7 @@ export const roles: Role[] = [
       'Real-time trading paths over WebSockets and distributed systems, handling stale quotes, fan-out and backpressure',
       'Drives adoption of AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability',
     ],
-    stack: ['Platform architecture', 'Configurable layouts', 'WebSockets', 'Distributed systems', 'Claude tooling'],
+    stack: ['Platform architecture', '.NET', 'AWS', 'WebSockets', 'Distributed systems', 'Claude tooling'],
   },
   {
     id: 'zeus',
@@ -127,7 +130,7 @@ export const roles: Role[] = [
       'Led 4 developers to deliver a reporting SDK under hard client deadlines',
       'Set up CI/CD with DevOps that made deploys ~50% faster; modular patterns cut debugging time ~20%',
     ],
-    stack: ['Next.js', 'Python', 'Django', 'LLMs', 'Semantic caching', 'CI/CD'],
+    stack: ['Next.js', 'Python', 'Django', '.NET', 'AWS', 'LLMs', 'Semantic caching', 'CI/CD'],
   },
   {
     id: 'culturex',
@@ -139,7 +142,7 @@ export const roles: Role[] = [
     location: null,
     summary: 'Designed and built web pages and features for CreatorX’s own product in a team of 4 developers.',
     highlights: ['Shipped product features on a team of 4', 'Code reviews: finding and fixing bugs before release'],
-    stack: ['Web', 'JavaScript'],
+    stack: ['JavaScript', 'AWS'],
   },
 ];
 
@@ -354,8 +357,10 @@ export const skills: Skill[] = [
   { name: 'Rust', group: 'Backend', evidence: ['arena'] },
   { name: 'Python', group: 'Backend', evidence: ['recruiter-backend', 'live-orderbook-feed', 'mini-matching-engine', 'zeus'] },
   { name: 'TypeScript / Node.js', group: 'Backend', evidence: ['fix-lab', 'arena', 'fo-wrapped', 'viewtrade'] },
+  { name: '.NET (C#)', group: 'Backend', evidence: ['viewtrade', 'zeus'] },
   { name: 'Django / FastAPI', group: 'Backend', evidence: ['zeus', 'recruiter-backend', 'live-orderbook-feed'] },
-  { name: 'Distributed systems', group: 'Backend', evidence: ['viewtrade', 'live-orderbook-feed', 'fix-lab'] },
+  { name: 'Distributed systems', group: 'Backend', evidence: ['viewtrade', 'zeus', 'live-orderbook-feed', 'fix-lab'] },
+  { name: 'Queues & streams (SQS, SNS, Kinesis)', group: 'Backend', evidence: ['viewtrade', 'zeus', 'culturex'] },
   { name: 'WebSockets / TCP', group: 'Backend', evidence: ['live-orderbook-feed', 'fix-lab', 'viewtrade'] },
   { name: 'PostgreSQL / Supabase', group: 'Backend', evidence: ['recruiter-backend'] },
   { name: 'React', group: 'Frontend', evidence: ['zeus', 'fix-lab', 'arena', 'fo-wrapped'] },
@@ -371,6 +376,7 @@ export const skills: Skill[] = [
   { name: 'Testing (diff, e2e, golden)', group: 'Infra & quality', evidence: ['arena', 'fix-lab', 'recruiter-backend'] },
   { name: 'Docker / CI/CD', group: 'Infra & quality', evidence: ['recruiter-backend', 'zeus', 'fix-lab'] },
   { name: 'Reliability (99.9% uptime)', group: 'Infra & quality', evidence: ['zeus', 'viewtrade'] },
+  { name: 'AWS (EC2, ECS/EKS, Lambda, S3, RDS, DynamoDB)', group: 'Infra & quality', evidence: ['viewtrade', 'zeus', 'culturex'] },
 ];
 
 /** Whole years of full-time engineering experience. */

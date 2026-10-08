@@ -34,7 +34,7 @@
   <h1>Vikas Pal</h1>
   <p class="role">Software Engineer, Fintech × AI · Platform, real-time trading infrastructure, production LLM systems</p>
   <div class="contact">
-    <span>India (IST), open to remote with US-hours overlap</span>
+    <span>India (IST) · open to remote, hybrid or on-site worldwide</span>
     <span><a href="mailto:palv499@gmail.com">palv499@gmail.com</a></span>
     <span><a href="https://www.linkedin.com/in/vikaspal1704/">linkedin.com/in/vikaspal1704</a></span>
     <span><a href="https://github.com/vikaspal1704">github.com/vikaspal1704</a></span>
@@ -52,13 +52,13 @@
   <ul>
     <li>Conceived and built, from scratch, the company’s <b>unified, configurable front-end platform</b>, and lead it with a <b>global team</b> of US engineers and external vendors.</li>
     <li>Business clients configure layouts for their firm and its users without new code, so <b>one framework replaces many bespoke frontends</b>. Leading the consolidation of the company’s separate frontends into it.</li>
-    <li>Build real-time trading paths over <b>WebSockets and distributed systems</b>, handling stale quotes, fan-out and backpressure where correctness and uptime come first.</li>
+    <li>Build real-time trading paths over <b>WebSockets and distributed systems</b> on <b>.NET and AWS</b>, handling stale quotes, fan-out and backpressure where correctness and uptime come first.</li>
     <li>Drive adoption of AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability.</li>
   </ul>
 </div>
 <div class="job">
   <div class="jh"><span>Zeus Learning · Software Developer</span><span class="when">Jan 2023 – Jul 2025</span></div>
-  <div class="sub">Mumbai · AI-powered test platform (Next.js, Python/Django)</div>
+  <div class="sub">Mumbai · AI-powered test platform (Next.js, Python/Django, .NET, AWS)</div>
   <ul>
     <li>Built and ran the platform at <b>~50,000 requests/day with 99.9% uptime</b> under peak load.</li>
     <li>Engineered <b>semantic caching that cut LLM costs ~40%</b> without changing the model family.</li>
@@ -77,15 +77,16 @@
 <ul class="proj">
   <li><b>Arena</b>: a stock exchange in the browser. Dependency-free Rust matching engine compiled to an 80 KB WebAssembly module; <b>~2M orders/s, p50 ≈ 350 ns, p99 ≈ 1.6 µs</b> on one core. Differential-tested in CI against an independent Python engine on 1.5M random commands. Journal replay with a fingerprint chain; profiling-led fix took p99 from 16.8 µs to 1.6 µs.</li>
   <li><b>FIX Protocol Lab</b>: FIX tag=value codec and TCP session engine built from scratch (FIX 4.2, 4.3, 4.4, 5.0 SP2), with logon, heartbeats, resend and gap fill, plus a live visual front end. Node.js, TypeScript, React 19; Playwright e2e and live smoke tests.</li>
-  <li><b>F&amp;O Wrapped</b>: privacy-first P&amp;L analytics for Indian F&amp;O traders across 4 brokers. FIFO round trips in integer paise, run entirely in the browser; offline PWA in English and Hindi.</li>
+  <li><b>F&amp;O Wrapped</b>: privacy-first P&amp;L analytics for Indian F&amp;O traders across 4 brokers; FIFO in integer paise, fully in-browser PWA.</li>
   <li><b>Recruiter Backend</b>: FastAPI service for LLM resume parsing (JSON mode), Pinecone semantic search and outreach; authenticated routes, fully mocked tests, Docker CI.</li>
-  <li><b>Live Orderbook Feed</b> (WebSocket L2 fan-out: snapshot + deltas, sequence numbers, backpressure) and <b>this portfolio</b> (on-device LLM via WebLLM, BM25 retrieval, job-description fit check).</li>
+  <li><b>Live Orderbook Feed</b> (WebSocket L2 fan-out with backpressure) and <b>this portfolio</b> (on-device LLM via WebLLM, retrieval, JD fit check).</li>
 </ul>
 
 <h2>Skills</h2>
 <div class="skills">
-  <p><b>Languages</b> Python, TypeScript / JavaScript, Rust, SQL</p>
-  <p><b>Backend</b> Django, FastAPI, Node.js, WebSockets, TCP, distributed systems, PostgreSQL, Supabase</p>
+  <p><b>Languages</b> Python, C# / .NET, TypeScript / JavaScript, Rust, SQL</p>
+  <p><b>Backend</b> .NET, Django, FastAPI, Node.js, distributed systems, microservices, WebSockets, TCP, PostgreSQL</p>
+  <p><b>AWS</b> EC2, ECS / EKS, Lambda, API Gateway, S3, RDS, DynamoDB, SQS, SNS, Kinesis</p>
   <p><b>Frontend</b> Front-end platform architecture, React, Next.js, Redux Toolkit, WebAssembly, Web Workers</p>
   <p><b>AI / LLM</b> Production LLM platforms, semantic caching, RAG and vector search (Pinecone), WebLLM / WebGPU, Claude tooling</p>
   <p><b>Fintech</b> Matching engines, L2 market data, FIX, P&amp;L and charges, brokerage / wealth-tech APIs</p>

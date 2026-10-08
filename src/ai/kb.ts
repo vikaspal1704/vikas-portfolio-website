@@ -38,7 +38,7 @@ function roleDocs(): Doc[] {
     )}`,
     keywords: [r.company, r.title, ...r.stack, 'experience', 'job', 'work', 'career'],
     refs: [r.id],
-    follow: ['Walk me through his career', 'What is he looking for next?'],
+    follow: ['Walk me through his career', 'Where can he work?'],
   }));
 }
 
@@ -72,11 +72,11 @@ function curatedDocs(): Doc[] {
         `- Before: Zeus Learning (Jan 2023 – Jul 2025), on a production AI platform: 99.9% uptime, ~40% LLM cost cut, led a team of 4.`,
         `- Proof you can run: ${featured.map((p) => p.name).join(', ')}, all open source and most of them live.`,
         `- Education: BE Computer Science, Gujarat Technological University (2023).`,
-        `- Looking for: Senior / Staff backend, platform, AI-infra or trading-infra roles, remote.`,
+        `- Open to remote, hybrid or on-site roles anywhere in the world.`,
       ].join('\n'),
       keywords: ['brief', 'tldr', 'summary', 'quick', 'short', 'overview', 'introduce', 'yourself', 'bio', 'background', 'resume', 'cv'],
       refs: ['viewtrade', 'arena', 'fo-wrapped'],
-      follow: ['Why hire Vikas?', 'What is he looking for next?'],
+      follow: ['Why hire Vikas?', 'Where can he work?'],
     },
     {
       id: 'ai',
@@ -137,14 +137,6 @@ function curatedDocs(): Doc[] {
       follow: ['Show me low-latency work', 'How does this site’s AI work?'],
     },
     {
-      id: 'looking-for',
-      title: 'What he is looking for',
-      answer: `${profile.remote}. Roles he is targeting:\n${bullets(profile.lookingFor)}`,
-      keywords: ['looking', 'next', 'role', 'want', 'goal', 'interest', 'open', 'seeking', 'target', 'ideal', 'job'],
-      refs: [],
-      follow: ['Is he a fit for my role?', 'How do I contact him?'],
-    },
-    {
       id: 'contact',
       title: 'Contact',
       answer: [
@@ -158,13 +150,13 @@ function curatedDocs(): Doc[] {
         .join('\n'),
       keywords: ['resume', 'pdf', 'download', 'contact', 'email', 'reach', 'call', 'interview', 'schedule', 'linkedin', 'talk', 'hire', 'message', 'phone', 'connect'],
       refs: [],
-      follow: ['What is he looking for next?', 'Give me the 60-second brief'],
+      follow: ['Where can he work?', 'Give me the 60-second brief'],
     },
     {
       id: 'location',
       title: 'Location and availability',
-      answer: `${profile.location}. ${profile.remote}. He wants US-hours overlap. Notice period, relocation and visa details aren’t published here, so email ${profile.email} for those.`,
-      keywords: ['location', 'where', 'based', 'timezone', 'time', 'zone', 'remote', 'relocate', 'relocation', 'visa', 'notice', 'available', 'availability', 'start', 'onsite', 'hybrid', 'country', 'india'],
+      answer: `Based in ${profile.location}. ${profile.remote}. Notice period and visa details aren’t published here, so email ${profile.email} for those.`,
+      keywords: ['looking', 'open', 'seeking', 'worldwide', 'abroad', 'move', 'location', 'where', 'based', 'timezone', 'time', 'zone', 'remote', 'relocate', 'relocation', 'visa', 'notice', 'available', 'availability', 'start', 'onsite', 'hybrid', 'country', 'india'],
       refs: [],
       follow: ['How do I contact him?'],
     },
@@ -184,7 +176,7 @@ function curatedDocs(): Doc[] {
       answer: `Compensation is something he’d rather discuss directly once there’s a mutual fit. Email ${profile.email}.`,
       keywords: ['salary', 'compensation', 'pay', 'ctc', 'expected', 'expectation', 'rate', 'money', 'package'],
       refs: [],
-      follow: ['What is he looking for next?'],
+      follow: ['Where can he work?'],
     },
     {
       id: 'platform',
@@ -199,6 +191,19 @@ function curatedDocs(): Doc[] {
       keywords: ['platform', 'frontend', 'front-end', 'framework', 'builder', 'workspace', 'layout', 'configurable', 'white-label', 'multi-tenant', 'viewtrade', 'created', 'built', 'scratch', 'architecture', 'micro-frontend', 'design', 'system'],
       refs: ['viewtrade'],
       follow: ['Has he led a team?', 'What AI has he shipped?'],
+    },
+    {
+      id: 'cloud',
+      title: 'AWS cloud, .NET and distributed systems',
+      answer: [
+        `- AWS across his roles at ViewTrade, Zeus Learning and CultureX: EC2, ECS/EKS, Lambda, API Gateway, S3, RDS, DynamoDB, SQS, SNS and Kinesis.`,
+        `- .NET (C#) backend work at ViewTrade and Zeus Learning, alongside Python/Django.`,
+        `- Distributed systems: real-time, latency-sensitive trading paths at ViewTrade (fan-out, backpressure, stale quotes), and a production platform at 99.9% uptime at Zeus Learning.`,
+        `- In open source: sequenced market-data fan-out with gap recovery, and a FIX session engine over TCP.`,
+      ].join('\n'),
+      keywords: ['aws', 'cloud', 'ec2', 'ecs', 'eks', 'lambda', 'api', 'gateway', 's3', 'rds', 'dynamodb', 'sqs', 'sns', 'kinesis', '.net', 'dotnet', 'c#', 'csharp', 'asp.net', 'distributed', 'systems', 'microservices', 'serverless', 'queue', 'infrastructure'],
+      refs: ['viewtrade', 'zeus', 'live-orderbook-feed'],
+      follow: ['Show me low-latency work', 'Has he led a team?'],
     },
     {
       id: 'leadership',
@@ -225,7 +230,7 @@ function curatedDocs(): Doc[] {
         `- AI / LLM: ${byGroup('AI / LLM').join(', ')}`,
         `- Infra & quality: ${byGroup('Infra & quality').join(', ')}`,
       ].join('\n'),
-      keywords: ['stack', 'skills', 'technologies', 'languages', 'tools', 'tech', 'know', 'proficient', 'framework'],
+      keywords: ['stack', 'skills', 'technologies', 'languages', 'tools', 'tech', 'proficient', 'framework'],
       refs: [],
       follow: ['Does he know Rust?', 'Show me his AI work'],
     },
@@ -247,7 +252,7 @@ function curatedDocs(): Doc[] {
         .join('\n'),
       keywords: ['career', 'experience', 'history', 'path', 'journey', 'timeline', 'years', 'previous', 'companies', 'worked'],
       refs: roles.map((r) => r.id),
-      follow: ['What does he do at ViewTrade?', 'What is he looking for next?'],
+      follow: ['What does he do at ViewTrade?', 'Where can he work?'],
     },
     {
       id: 'site-ai',
@@ -268,8 +273,8 @@ function curatedDocs(): Doc[] {
       title: 'Gaps and growth areas',
       answer: [
         `Being straight about what the public evidence doesn’t show:`,
-        `- No C++, Java or Go on his record. His production work is Python/Django and TypeScript/Next.js, and his systems-level work is in Rust.`,
-        `- No Kafka or Kubernetes on his record. His messaging work is WebSocket and TCP fan-out with sequencing; deployment work is Docker and CI.`,
+        `- No C++, Java or Go on his record. His production work is in Python/Django, .NET and TypeScript/Next.js, and his systems-level work is in Rust.`,
+        `- Kafka isn’t on his record; his streaming and queueing work is on AWS (SQS, SNS, Kinesis) and WebSocket fan-out. On Kubernetes, his container work is ECS/EKS on AWS rather than self-managed clusters.`,
         `- Applied AI rather than model training: LLM integration, retrieval and on-device inference.`,
         `- Rust and the exchange internals (matching, FIX) are personal projects rather than his day job, though they are tested and benchmarked to a production standard.`,
       ].join('\n'),

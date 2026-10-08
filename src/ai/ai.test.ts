@@ -58,8 +58,8 @@ describe('fit check', () => {
     expect(by('LLMs / generative AI')?.strength).toBe('strong');
   });
   it('reports gaps honestly', () => {
-    expect(by('Kafka / message queues')?.strength).toBe('gap');
-    expect(by('Kubernetes')?.strength).toBe('gap');
+    expect(by('Kafka')?.strength).toBe('adjacent');
+    expect(by('Kubernetes')?.strength).toBe('adjacent');
     expect(by('C++')?.strength).toBe('gap');
   });
   it('orders strong → adjacent → gap and computes coverage', () => {
@@ -98,5 +98,25 @@ describe('platform lead', () => {
   it('answers platform questions from the ViewTrade role', () => {
     expect(search('Tell me about the frontend platform he built')[0]?.doc.id).toBe('platform');
     expect(fitCheck('Own our multi-tenant white-label front-end platform').lines.find((l) => l.label === 'Platform / front-end architecture')?.strength).toBe('strong');
+  });
+});
+
+describe('cloud and .NET', () => {
+  it('credits AWS and .NET from roles', () => {
+    const r = fitCheck('Backend engineer: C# / .NET services on AWS (Lambda, SQS, DynamoDB), event-driven microservices.');
+    const by = (l: string) => r.lines.find((x) => x.label === l)?.strength;
+    expect(by('.NET / C#')).toBe('strong');
+    expect(by('AWS / cloud')).toBe('strong');
+    expect(by('Message queues / event streaming')).toBe('strong');
+  });
+  it('does not read Next.js as .NET', () => {
+    expect(fitCheck('Experience with Next.js').lines.some((l) => l.label === '.NET / C#')).toBe(false);
+  });
+  it('answers AWS questions', () => {
+    expect(search('Does he know AWS?')[0]?.doc.id).toBe('cloud');
+  });
+  it('no longer advertises a target role', () => {
+    expect(docs.some((d) => d.id === 'looking-for')).toBe(false);
+    expect(search('Is he open to relocating abroad?')[0]?.doc.id).toBe('location');
   });
 });

@@ -62,7 +62,7 @@ export function Hero({ onAsk }: { onAsk: (q: string) => void }) {
         <div className="session">
           <span><b>● Session open</b></span>
           <span>{profile.location}</span>
-          <span>Open to remote</span>
+          <span>Open to roles worldwide</span>
         </div>
         <h1 className="name">
           Vikas <em>Pal</em>
