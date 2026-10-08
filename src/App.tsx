@@ -48,6 +48,9 @@ export default function App() {
           <button className="btn ai-btn" onClick={() => ask('')}>
             ✦ Ask <span className="kbd hide-sm">⌘K</span>
           </button>
+          {profile.resumeUrl && (
+            <a className="btn hide-sm" href={profile.resumeUrl} target="_blank" rel="noreferrer">Résumé</a>
+          )}
           <a className="btn primary hide-sm" href={`mailto:${profile.email}`}>Hire me</a>
         </div>
       </nav>

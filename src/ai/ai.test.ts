@@ -16,7 +16,6 @@ describe('retrieval', () => {
     ['what degree does he have', 'education'],
     ['salary expectations', 'compensation'],
     ['FIX protocol experience', 'project:fix-lab'],
-    ['What does he do at ViewTrade?', 'role:viewtrade'],
     ['Does he know Kafka or Kubernetes?', 'gaps'],
     ['How does this site’s AI work?', 'site-ai'],
     ['Give me the 60-second brief', 'brief'],
@@ -89,5 +88,15 @@ describe('production record', () => {
   });
   it('knows his education', () => {
     expect(top('what degree does he have')?.doc.answer).toContain('Gujarat Technological University');
+  });
+});
+
+describe('platform lead', () => {
+  it('answers ViewTrade questions from the role or the platform entry', () => {
+    expect(['role:viewtrade', 'platform']).toContain(search('What does he do at ViewTrade?')[0]?.doc.id);
+  });
+  it('answers platform questions from the ViewTrade role', () => {
+    expect(search('Tell me about the frontend platform he built')[0]?.doc.id).toBe('platform');
+    expect(fitCheck('Own our multi-tenant white-label front-end platform').lines.find((l) => l.label === 'Platform / front-end architecture')?.strength).toBe('strong');
   });
 });

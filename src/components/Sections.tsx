@@ -29,7 +29,7 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
             <p className="kpi mono">{yearsExperience()}+ yrs</p>
             <ul>
               <li>
-                <strong style={{ color: 'var(--text)', fontWeight: 500 }}>SDE at ViewTrade</strong>, GIFT City: real-time trading infrastructure for API-driven brokerage and wealth-tech platforms
+                <strong style={{ color: 'var(--text)', fontWeight: 500 }}>SDE at ViewTrade</strong>: created and leads its unified front-end platform for brokerage clients, with a global team; also builds real-time trading infra
               </li>
               <li>Zeus Learning: a production AI platform with 99.9% uptime and ~40% lower LLM costs, and led a team of 4</li>
               <li>BE Computer Science, GTU (2023)</li>

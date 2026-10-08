@@ -55,7 +55,7 @@ function curatedDocs(): Doc[] {
       answer: [
         `${profile.name} has ${yrs}+ years building production systems where fintech meets AI. He has already paid the production tax: uptime, token bills, latency and deadlines.`,
         `- Production AI at scale: at Zeus Learning he ran an AI test platform (Next.js + Python/Django) at ~50,000 requests a day with 99.9% uptime, and his semantic caching cut LLM costs ~40%.`,
-        `- Trading infrastructure now: SDE at ViewTrade, building real-time WebSocket and distributed-systems infrastructure for API-driven brokerage platforms.`,
+        `- Builder and lead: at ViewTrade he conceived and built, from scratch, the company’s unified front-end platform, a configurable workspace builder for brokerage clients. He leads it with a global team of US engineers and vendors, and he also builds the real-time trading infrastructure behind it.`,
         `- Depth beyond the day job: a Rust matching engine at ~2M orders/s (p50 ≈ 350 ns), an L2 feed with gap recovery, and a FIX session engine built from scratch.`,
         `- Leadership and delivery: led 4 developers to ship a reporting SDK under hard client deadlines, and made deploys ~50% faster with CI/CD.`,
       ].join('\n'),
@@ -68,7 +68,7 @@ function curatedDocs(): Doc[] {
       title: 'The 60-second brief',
       answer: [
         `${profile.headline}, ${yrs}+ years. ${profile.location}. ${profile.remote}.`,
-        `- Now: ${roles[0]!.title} at ViewTrade (since ${roles[0]!.start}), building real-time trading infrastructure for brokerage and wealth-tech APIs.`,
+        `- Now: SDE at ViewTrade (since ${roles[0]!.start}). Created and leads its unified front-end platform, where business clients configure layouts for their firms and users, and builds real-time trading infrastructure.`,
         `- Before: Zeus Learning (Jan 2023 – Jul 2025), on a production AI platform: 99.9% uptime, ~40% LLM cost cut, led a team of 4.`,
         `- Proof you can run: ${featured.map((p) => p.name).join(', ')}, all open source and most of them live.`,
         `- Education: BE Computer Science, Gujarat Technological University (2023).`,
@@ -151,11 +151,12 @@ function curatedDocs(): Doc[] {
         `The fastest route is email: ${profile.email}.`,
         `- LinkedIn: ${profile.links.linkedin}`,
         `- GitHub: ${profile.links.github}`,
+        profile.resumeUrl ? `- Résumé (PDF): download it from the Résumé button at the top of the page` : '',
         profile.calendarUrl ? `- Book a call: ${profile.calendarUrl}` : '',
       ]
         .filter(Boolean)
         .join('\n'),
-      keywords: ['contact', 'email', 'reach', 'call', 'interview', 'schedule', 'linkedin', 'talk', 'hire', 'message', 'phone', 'connect'],
+      keywords: ['resume', 'pdf', 'download', 'contact', 'email', 'reach', 'call', 'interview', 'schedule', 'linkedin', 'talk', 'hire', 'message', 'phone', 'connect'],
       refs: [],
       follow: ['What is he looking for next?', 'Give me the 60-second brief'],
     },
@@ -186,17 +187,32 @@ function curatedDocs(): Doc[] {
       follow: ['What is he looking for next?'],
     },
     {
+      id: 'platform',
+      title: 'The front-end platform he created at ViewTrade',
+      answer: [
+        `Vikas conceived and built ViewTrade’s unified front-end platform from scratch, and he leads it.`,
+        `- What it is: a configurable workspace builder. ViewTrade sets it up for each business client, and the client configures layouts for its firm and its users.`,
+        `- Why it matters: one framework replaces many bespoke frontends, and ViewTrade’s separate frontends are being merged into it.`,
+        `- His role: creator and lead, working with a global team of US engineers and external vendors.`,
+        `The internal product name and client details are confidential, so ask him directly for more.`,
+      ].join('\n'),
+      keywords: ['platform', 'frontend', 'front-end', 'framework', 'builder', 'workspace', 'layout', 'configurable', 'white-label', 'multi-tenant', 'viewtrade', 'created', 'built', 'scratch', 'architecture', 'micro-frontend', 'design', 'system'],
+      refs: ['viewtrade'],
+      follow: ['Has he led a team?', 'What AI has he shipped?'],
+    },
+    {
       id: 'leadership',
       title: 'Leadership and impact',
       answer: [
+        `- Created ViewTrade’s unified front-end platform from scratch and leads it with a global team of US engineers and external vendors`,
         `- Led 4 developers to deliver a reporting SDK under hard client deadlines (Zeus Learning)`,
         `- Set up CI/CD with DevOps that made deploys ~50% faster; modular patterns cut debugging time ~20%`,
         `- Owned production reliability: 99.9% uptime under peak at ~50,000 requests a day`,
         `- Cut LLM spend ~40% with semantic caching`,
         `- Earlier, led a community engagement team at Break The Barrier (2021–2022)`,
       ].join('\n'),
-      keywords: ['lead', 'leadership', 'team', 'manage', 'mentor', 'impact', 'senior', 'staff', 'ownership', 'deliver', 'deadline', 'metrics', 'results', 'achievements', 'uptime'],
-      refs: ['zeus'],
+      keywords: ['platform', 'architect', 'lead', 'leadership', 'team', 'manage', 'mentor', 'impact', 'senior', 'staff', 'ownership', 'deliver', 'deadline', 'metrics', 'results', 'achievements', 'uptime'],
+      refs: ['viewtrade', 'zeus'],
       follow: ['Why hire Vikas?', 'What AI has he shipped?'],
     },
     {

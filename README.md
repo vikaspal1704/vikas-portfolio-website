@@ -18,7 +18,12 @@ liquidity heatmap of its order book and benchmarks itself on the visitor's devic
 
 Everything the site and the AI say comes from **`src/data/profile.ts`**. Fields marked `TODO(vikas)`
 (education, résumé PDF, calendar link, quantified ViewTrade impact) are hidden until they are filled in.
-Put a résumé at `public/vikas-pal-resume.pdf` and set `resumeUrl: 'vikas-pal-resume.pdf'`.
+## Résumé
+
+`public/vikas-pal-resume.pdf` is rendered from `resume/resume.html` (one US Letter page, real TrueType text so
+ATS parsers can read it). After editing the HTML, re-render it with any Chromium "Print to PDF" or with Playwright:
+`page.goto('file://…/resume/resume.html'); page.pdf({ path: 'public/vikas-pal-resume.pdf', preferCSSPageSize: true })`.
+Keep its facts in sync with `src/data/profile.ts`.
 
 ## Develop
 

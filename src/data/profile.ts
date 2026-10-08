@@ -62,7 +62,7 @@ export const profile = {
   handle: 'vikaspal1704',
   headline: 'Fintech × AI engineer',
   pitch:
-    'I build real-time trading infrastructure and AI platforms that stay up when traffic and token bills spike. Off the clock, I build the machinery of markets: matching engines, market-data feeds and FIX sessions.',
+    'I created and lead ViewTrade’s unified front-end platform for brokerages, I build real-time trading infrastructure, and I ship AI platforms that stay up when traffic and token bills spike. Off the clock, I build matching engines, market-data feeds and FIX sessions.',
   location: 'India (IST, UTC+5:30)',
   remote: 'Open to remote Senior / Staff roles on global teams, with US-hours overlap',
   email: 'palv499@gmail.com',
@@ -70,8 +70,8 @@ export const profile = {
     github: 'https://github.com/vikaspal1704',
     linkedin: 'https://www.linkedin.com/in/vikaspal1704/',
   },
-  // TODO(vikas): add a hosted résumé PDF (e.g. public/vikas-pal-resume.pdf) and set this to its path.
-  resumeUrl: null as string | null,
+  /** Built from resume/resume.html; see README. */
+  resumeUrl: 'vikas-pal-resume.pdf' as string | null,
   // TODO(vikas): add a Calendly / Cal.com link if you want "Book a call".
   calendarUrl: null as string | null,
   education: 'BE in Computer Science, LDRP Institute of Technology & Research (Gujarat Technological University), 2019–2023' as string | null,
@@ -88,7 +88,7 @@ export const profile = {
     'Docs first: every flagship repo starts with a PRD, TRD, API contract, acceptance criteria and an AGENT_BRIEF so humans and AI coding agents can build without guessing.',
     'Correctness is proven, not claimed: differential tests against a reference engine, golden vectors, Playwright end-to-end tests and live smoke tests in CI.',
     'Measure before optimising: Arena’s p99 dropped from 16.8 µs to 1.6 µs once profiling showed page faults, not matching logic, caused the tail.',
-    'Leads by shipping: led 4 developers to deliver a reporting SDK under hard client deadlines.',
+    'Leads by building: created ViewTrade’s front-end platform from scratch and leads a global team on it; earlier, led 4 developers to deliver an SDK under hard deadlines.',
   ],
 };
 
@@ -97,19 +97,20 @@ export const roles: Role[] = [
     id: 'viewtrade',
     company: 'ViewTrade Holding Corp.',
     companyUrl: 'https://viewtrade.com',
-    title: 'Software Development Engineer',
+    title: 'Software Development Engineer · Platform Lead',
     start: 'Aug 2025',
     end: null,
     location: 'GIFT City, Gandhinagar',
     summary:
-      'Building real-time trading infrastructure for API-driven brokerage and wealth-tech platforms: WebSockets, distributed systems and latency-sensitive request paths.',
+      'Created, and leads, ViewTrade’s unified front-end platform: a configurable workspace builder for brokerage and wealth-tech clients. Also builds the real-time trading infrastructure behind it.',
     highlights: [
-      'Production services where correctness and uptime matter more than demo velocity',
-      'Handles trading-specific failure modes: stale quotes, fan-out and backpressure',
-      'Helps engineering adopt AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability',
-      // TODO(vikas): add 1–2 quantified outcomes when you can share them.
+      'Conceived and built the platform from scratch, and leads it with a global team of US engineers and external vendors',
+      'Business clients configure layouts for their firm and its users without new code, so one framework replaces many bespoke frontends',
+      'Consolidating ViewTrade’s separate frontends into this single framework',
+      'Real-time trading paths over WebSockets and distributed systems, handling stale quotes, fan-out and backpressure',
+      'Drives adoption of AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability',
     ],
-    stack: ['WebSockets', 'Distributed systems', 'Python', 'TypeScript', 'Claude tooling'],
+    stack: ['Platform architecture', 'Configurable layouts', 'WebSockets', 'Distributed systems', 'Claude tooling'],
   },
   {
     id: 'zeus',
@@ -360,6 +361,7 @@ export const skills: Skill[] = [
   { name: 'React', group: 'Frontend', evidence: ['zeus', 'fix-lab', 'arena', 'fo-wrapped'] },
   { name: 'Redux Toolkit', group: 'Frontend', evidence: ['fix-lab'] },
   { name: 'Next.js', group: 'Frontend', evidence: ['zeus'] },
+  { name: 'Front-end platform architecture', group: 'Frontend', evidence: ['viewtrade'] },
   { name: 'WebAssembly / Workers', group: 'Frontend', evidence: ['arena', 'fo-wrapped', 'this-site'] },
   { name: 'Production LLM platforms', group: 'AI / LLM', evidence: ['zeus', 'recruiter-backend', 'smpa'] },
   { name: 'LLM cost (semantic caching)', group: 'AI / LLM', evidence: ['zeus'] },
