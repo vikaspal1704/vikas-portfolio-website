@@ -51,7 +51,9 @@ export default function App() {
           {profile.resumeUrl && (
             <a className="btn hide-sm" href={profile.resumeUrl} target="_blank" rel="noreferrer">Résumé</a>
           )}
-          <a className="btn primary hide-sm" href={`mailto:${profile.email}`}>Hire me</a>
+          <a className="btn primary hide-sm" href={profile.calendarUrl ?? `mailto:${profile.email}`} target="_blank" rel="noreferrer">
+            {profile.calendarUrl ? 'Book a call' : 'Hire me'}
+          </a>
         </div>
       </nav>
       <main>

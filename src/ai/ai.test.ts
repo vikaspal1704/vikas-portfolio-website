@@ -120,3 +120,15 @@ describe('cloud and .NET', () => {
     expect(search('Is he open to relocating abroad?')[0]?.doc.id).toBe('location');
   });
 });
+
+describe('latest facts', () => {
+  it('uses the official title and the platform metrics', () => {
+    const role = docs.find((d) => d.id === 'role:viewtrade')!;
+    expect(role.title).toContain('Software Development Engineer I');
+    expect(role.title).not.toContain('Lead');
+    expect(search('Tell me about the frontend platform he built')[0]?.doc.answer).toContain('300+');
+  });
+  it('offers the calendar link for contact', () => {
+    expect(search('how can I schedule a call')[0]?.doc.answer).toContain('calendly.com/palv499/30min');
+  });
+});

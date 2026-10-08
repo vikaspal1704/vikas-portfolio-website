@@ -38,20 +38,21 @@
     <span><a href="mailto:palv499@gmail.com">palv499@gmail.com</a></span>
     <span><a href="https://www.linkedin.com/in/vikaspal1704/">linkedin.com/in/vikaspal1704</a></span>
     <span><a href="https://github.com/vikaspal1704">github.com/vikaspal1704</a></span>
+    <span><a href="https://calendly.com/palv499/30min">calendly.com/palv499/30min</a></span>
     <span><a href="https://vikaspal1704.github.io/vikas-portfolio-website/">vikaspal1704.github.io/vikas-portfolio-website</a></span>
   </div>
 </header>
 
 <h2>Summary</h2>
-<p>Software engineer with 4+ years shipping production systems where fintech meets AI. I created, and lead, a brokerage-infrastructure company’s unified front-end platform. I build real-time trading paths, and I have run an LLM platform at 99.9% uptime while cutting model costs ~40%. In open source: exchange internals, including a Rust matching engine at ~2M orders/s.</p>
+<p>Software engineer with 4+ years shipping production systems where fintech meets AI. I created, and lead, a brokerage-infrastructure company’s unified front-end platform, which merged 7 frontends into one and serves 300+ clients. Previously ran an LLM platform at 99.9% uptime while cutting model costs ~40%. In open source: a Rust matching engine at ~2M orders/s.</p>
 
 <h2>Experience</h2>
 <div class="job">
-  <div class="jh"><span>ViewTrade Holding Corp. · Software Development Engineer, Platform Lead</span><span class="when">Aug 2025 – Present</span></div>
+  <div class="jh"><span>ViewTrade Holding Corp. · Software Development Engineer I</span><span class="when">Aug 2025 – Present</span></div>
   <div class="sub">GIFT City, Gandhinagar · API-driven brokerage and wealth-tech infrastructure</div>
   <ul>
     <li>Conceived and built, from scratch, the company’s <b>unified, configurable front-end platform</b>, and lead it with a <b>global team</b> of US engineers and external vendors.</li>
-    <li>Business clients configure layouts for their firm and its users without new code, so <b>one framework replaces many bespoke frontends</b>. Leading the consolidation of the company’s separate frontends into it.</li>
+    <li><b>Merged 7 frontend codebases into one platform serving 300+ advisory and retail clients</b>, and brought internal frontends onto the same architecture. Clients configure layouts for their firm and users without new code.</li>
     <li>Build real-time trading paths over <b>WebSockets and distributed systems</b> on <b>.NET and AWS</b>, handling stale quotes, fan-out and backpressure where correctness and uptime come first.</li>
     <li>Drive adoption of AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability.</li>
   </ul>
@@ -76,9 +77,9 @@
 <h2>Selected open-source projects</h2>
 <ul class="proj">
   <li><b>Arena</b>: a stock exchange in the browser. Dependency-free Rust matching engine compiled to an 80 KB WebAssembly module; <b>~2M orders/s, p50 ≈ 350 ns, p99 ≈ 1.6 µs</b> on one core. Differential-tested in CI against an independent Python engine on 1.5M random commands. Journal replay with a fingerprint chain; profiling-led fix took p99 from 16.8 µs to 1.6 µs.</li>
-  <li><b>FIX Protocol Lab</b>: FIX tag=value codec and TCP session engine built from scratch (FIX 4.2, 4.3, 4.4, 5.0 SP2), with logon, heartbeats, resend and gap fill, plus a live visual front end. Node.js, TypeScript, React 19; Playwright e2e and live smoke tests.</li>
+  <li><b>FIX Protocol Lab</b>: FIX codec and TCP session engine from scratch (FIX 4.2–5.0 SP2) with resend and gap fill, plus a live visual front end; Node.js, TypeScript, React, Playwright.</li>
   <li><b>F&amp;O Wrapped</b>: privacy-first P&amp;L analytics for Indian F&amp;O traders across 4 brokers; FIFO in integer paise, fully in-browser PWA.</li>
-  <li><b>Recruiter Backend</b>: FastAPI service for LLM resume parsing (JSON mode), Pinecone semantic search and outreach; authenticated routes, fully mocked tests, Docker CI.</li>
+  <li><b>Recruiter Backend</b>: FastAPI service for LLM resume parsing and Pinecone semantic search; auth, mocked tests, Docker CI.</li>
   <li><b>Live Orderbook Feed</b> (WebSocket L2 fan-out with backpressure) and <b>this portfolio</b> (on-device LLM via WebLLM, retrieval, JD fit check).</li>
 </ul>
 

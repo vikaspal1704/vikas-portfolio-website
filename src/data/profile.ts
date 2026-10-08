@@ -73,13 +73,14 @@ export const profile = {
   /** Built from resume/resume.html; see README. */
   resumeUrl: 'vikas-pal-resume.pdf' as string | null,
   // TODO(vikas): add a Calendly / Cal.com link if you want "Book a call".
-  calendarUrl: null as string | null,
+  calendarUrl: 'https://calendly.com/palv499/30min' as string | null,
   education: 'BE in Computer Science, LDRP Institute of Technology & Research (Gujarat Technological University), 2019–2023' as string | null,
   /** First full-time engineering role (CultureX, July 2022). */
   careerStart: { year: 2022, month: 7 },
   /** Outcomes already delivered; shown opposite the skills in the order book. */
   outcomes: [
-    { metric: 'from scratch', label: 'Created and leads ViewTrade’s unified front-end platform, with a global team' },
+    { metric: '7 → 1', label: 'Frontend codebases merged into the platform he created and leads at ViewTrade' },
+    { metric: '300+', label: 'Advisory and retail clients served by that single platform' },
     { metric: '99.9%', label: 'Uptime under peak at ~50,000 requests/day (Zeus Learning)' },
     { metric: '−40%', label: 'LLM costs, via semantic caching, with no model change' },
     { metric: '~50%', label: 'Faster deploys after setting up CI/CD with DevOps' },
@@ -100,7 +101,7 @@ export const roles: Role[] = [
     id: 'viewtrade',
     company: 'ViewTrade Holding Corp.',
     companyUrl: 'https://viewtrade.com',
-    title: 'Software Development Engineer · Platform Lead',
+    title: 'Software Development Engineer I',
     start: 'Aug 2025',
     end: null,
     location: 'GIFT City, Gandhinagar',
@@ -108,8 +109,9 @@ export const roles: Role[] = [
       'Created, and leads, ViewTrade’s unified front-end platform: a configurable workspace builder for brokerage and wealth-tech clients. Also builds the real-time trading infrastructure behind it.',
     highlights: [
       'Conceived and built the platform from scratch, and leads it with a global team of US engineers and external vendors',
-      'Business clients configure layouts for their firm and its users without new code, so one framework replaces many bespoke frontends',
-      'Consolidating ViewTrade’s separate frontends into this single framework',
+      'Merged 7 separate frontend codebases into the single platform, which now serves 300+ advisory and retail clients',
+      'Brought ViewTrade’s internal frontends onto the same architecture',
+      'Business clients configure layouts for their firm and its users without new code',
       'Real-time trading paths over WebSockets and distributed systems, handling stale quotes, fan-out and backpressure',
       'Drives adoption of AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability',
     ],
