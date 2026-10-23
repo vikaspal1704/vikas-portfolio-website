@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { evidenceRef, profile, projects, roles, skills, yearsExperience, type Project } from '../data/profile';
+import { evidenceRef, faqs, profile, projects, roles, skills, yearsExperience, type Project } from '../data/profile';
 
 /** Adds `.in` to `.reveal` elements as they scroll into view. */
 export function useReveal() {
@@ -18,7 +18,7 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
   return (
     <section className="block" id="brief" aria-labelledby="brief-h">
       <div className="wrap">
-        <div className="eyebrow reveal">01 · The 60-second brief</div>
+        <div className="eyebrow reveal">01 · About Vikas Pal: the 60-second brief</div>
         <h2 className="h2 reveal" id="brief-h">
           Production AI and markets infra, <em>proven.</em>
         </h2>
@@ -63,6 +63,15 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
           {profile.calendarUrl && (
             <a className="chip" href={profile.calendarUrl} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>📅 Book a 30-min call</a>
           )}
+        </div>
+        <div className="faq reveal">
+          <h3 className="faq-h">Quick answers</h3>
+          {faqs.map((f) => (
+            <details key={f.q}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
         </div>
       </div>
     </section>
@@ -115,6 +124,7 @@ function Instrument({ p, onAsk }: { p: Project; onAsk: (q: string) => void }) {
         {p.live && (
           <a className={`btn${p.featured ? '' : ' primary'}`} href={p.live} target="_blank" rel="noreferrer">Live demo ↗</a>
         )}
+        {p.id !== 'this-site' && <a className="btn" href={`projects/${p.id}/`}>Details</a>}
         <a className="btn" href={p.code} target="_blank" rel="noreferrer">Code</a>
         <button className="btn ai-btn" onClick={() => onAsk(`Tell me about ${p.name}`)}>✦ Ask</button>
       </div>
@@ -126,7 +136,7 @@ export function Instruments({ onAsk }: { onAsk: (q: string) => void }) {
   return (
     <section className="block" id="work" aria-labelledby="work-h">
       <div className="wrap">
-        <div className="eyebrow reveal">02 · Listed instruments</div>
+        <div className="eyebrow reveal">02 · Projects: trading systems &amp; applied AI</div>
         <h2 className="h2 reveal" id="work-h">
           Work you can <em>run</em>, not just read.
         </h2>
@@ -148,7 +158,7 @@ export function SkillBook({ onAsk }: { onAsk: (q: string) => void }) {
   return (
     <section className="block" id="book" aria-labelledby="book-h">
       <div className="wrap">
-        <div className="eyebrow reveal">03 · Order book</div>
+        <div className="eyebrow reveal">03 · Skills</div>
         <h2 className="h2 reveal" id="book-h">
           What I bring, <em>what it delivered.</em>
         </h2>
@@ -227,7 +237,7 @@ export function Ledger() {
   return (
     <section className="block" id="ledger" aria-labelledby="ledger-h">
       <div className="wrap">
-        <div className="eyebrow reveal">04 · Journal</div>
+        <div className="eyebrow reveal">04 · Experience</div>
         <h2 className="h2 reveal" id="ledger-h">
           The career, <em>as a journal.</em>
         </h2>
@@ -277,7 +287,7 @@ export function Settle({ onAsk }: { onAsk: (q: string) => void }) {
   return (
     <section className="block settle" id="contact" aria-labelledby="contact-h">
       <div className="wrap">
-        <div className="eyebrow reveal">05 · Settlement</div>
+        <div className="eyebrow reveal">05 · Contact Vikas Pal</div>
         <h2 className="h2 reveal" id="contact-h">
           Let’s match <em>orders.</em>
         </h2>

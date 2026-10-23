@@ -1,6 +1,6 @@
 # VIKAS/LIVE: Vikas Pal's portfolio
 
-**Live:** https://vikaspal1704.github.io/vikas-portfolio-website/
+**Live:** https://vikaspal.is-a.dev/
 
 A portfolio that runs an exchange. When the page opens, the Rust matching engine from
 [Arena](https://github.com/vikaspal1704/arena), compiled to WebAssembly, starts in a Web Worker. It draws a live
@@ -13,6 +13,15 @@ liquidity heatmap of its order book and benchmarks itself on the visitor's devic
 - **Local LLM (optional):** [WebLLM](https://github.com/mlc-ai/web-llm) runs Qwen2.5-1.5B-Instruct on the visitor's GPU
   via WebGPU. It is grounded on the retrieved documents only. It needs no API key, costs nothing and sends no data anywhere.
 - **JD fit check:** paste a job description and each requirement is mapped to evidence. Gaps are shown as gaps.
+
+## SEO and AI answer engines
+
+The build bakes crawlable content into the HTML from `src/data/profile.ts` (see `src/seo/render.ts` and the `seo`
+plugin in `vite.config.ts`): a static profile inside `#root` (React replaces it on boot), JSON-LD (`Person`,
+`ProfilePage`, `WebSite`, one `SoftwareSourceCode` per project), a page per project at `/projects/<id>/`,
+`sitemap.xml`, `llms.txt` and `404.html`. `public/` holds `robots.txt` (AI crawlers allowed), favicons, the web
+manifest and the self-hosted fonts. To verify Search Console / Bing, set `googleSiteVerification` /
+`bingSiteVerification` in `profile.ts`.
 
 ## Editing content
 

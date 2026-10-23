@@ -68,7 +68,7 @@ export function Hero({ onAsk }: { onAsk: (q: string) => void }) {
           Vikas <em>Pal</em>
         </h1>
         <p className="role-line">
-          Fintech<span className="x">×</span>AI engineer
+          Forward Deployed Engineer<span className="x">·</span>Applied AI<span className="x">×</span>Fintech
         </p>
         <p className="pitch">{profile.pitch}</p>
 

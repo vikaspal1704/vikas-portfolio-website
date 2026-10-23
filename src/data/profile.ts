@@ -60,10 +60,20 @@ export interface Skill {
 export const profile = {
   name: 'Vikas Pal',
   handle: 'vikaspal1704',
-  headline: 'Fintech × AI engineer',
+  headline: 'Forward Deployed Engineer | Applied AI × Fintech',
   pitch:
     'I created and lead ViewTrade’s unified front-end platform for brokerages, I build real-time trading infrastructure, and I ship AI platforms that stay up when traffic and token bills spike. Off the clock, I build matching engines, market-data feeds and FIX sessions.',
-  location: 'India (IST, UTC+5:30)',
+  location: 'Ahmedabad, India (IST, UTC+5:30)',
+  city: 'Ahmedabad',
+  region: 'Gujarat',
+  country: 'India',
+  /** Canonical public URL of this site. */
+  siteUrl: 'https://vikaspal.is-a.dev/',
+  // TODO(vikas): square headshot, ≥800×800, saved as public/vikas-pal.jpg; then set this to 'vikas-pal.jpg'.
+  photo: null as string | null,
+  // Search Console / Bing verification codes (the content="…" value only). Emitted as meta tags when set.
+  googleSiteVerification: null as string | null,
+  bingSiteVerification: null as string | null,
   remote: 'Open to remote, hybrid or on-site roles anywhere in the world, including relocation',
   email: 'palv499@gmail.com',
   links: {
@@ -95,6 +105,33 @@ export const profile = {
     'Leads by building: created ViewTrade’s front-end platform from scratch and leads a global team on it; earlier, led 4 developers to deliver an SDK under hard deadlines.',
   ],
 };
+
+/**
+ * Short, quotable answers. Rendered in the Brief section, in the static HTML that
+ * crawlers and AI answer engines read, and used by the analyst.
+ */
+export const faqs: { q: string; a: string }[] = [
+  {
+    q: 'Who is Vikas Pal?',
+    a: 'Vikas Pal is a Forward Deployed Engineer working across applied AI and fintech, based in Ahmedabad, India. He is a Software Development Engineer at ViewTrade, where he created and leads a unified front-end platform that merged 7 frontend codebases into one and serves 300+ advisory and retail clients.',
+  },
+  {
+    q: 'What AI work has Vikas Pal shipped?',
+    a: 'At Zeus Learning he ran an AI-powered test platform at ~50,000 requests a day with 99.9% uptime, and built semantic caching that cut LLM costs about 40%. He also built an LLM résumé-parsing and semantic-search service, and this site runs an open-source LLM in the visitor’s browser.',
+  },
+  {
+    q: 'What is Arena?',
+    a: 'Arena is Vikas Pal’s open-source stock exchange in the browser: a dependency-free Rust matching engine compiled to WebAssembly that matches about 2 million orders per second (p50 ≈ 350 ns), with deterministic replay and an L2 market-data feed with gap recovery.',
+  },
+  {
+    q: 'Where is Vikas Pal based, and is he open to relocation?',
+    a: 'He is based in Ahmedabad, India (IST), and is open to remote, hybrid or on-site roles anywhere in the world, including relocation.',
+  },
+  {
+    q: 'How do I contact Vikas Pal?',
+    a: 'Book a 30-minute call at calendly.com/palv499/30min, or email palv499@gmail.com.',
+  },
+];
 
 export const roles: Role[] = [
   {
