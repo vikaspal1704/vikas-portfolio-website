@@ -41,3 +41,18 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Tells Bing and other IndexNow engines about every sitemap URL once the new build is live.
+  # Never fails the run: problems show up as warnings. See scripts/indexnow.mjs.
+  indexnow:
+    if: github.ref == 'refs/heads/main'
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/indexnow.mjs
