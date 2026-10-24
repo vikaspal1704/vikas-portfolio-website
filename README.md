@@ -23,6 +23,15 @@ plugin in `vite.config.ts`): a static profile inside `#root` (React replaces it 
 manifest and the self-hosted fonts. To verify Search Console / Bing, set `googleSiteVerification` /
 `bingSiteVerification` in `profile.ts`.
 
+### Bing and IndexNow
+
+Bing Webmaster Tools caps how many `*.is-a.dev` sites it accepts, so Bing is fed through
+[IndexNow](https://www.indexnow.org/) instead, which needs no account. The key file
+`public/0297fe6466bc8dcf0ab9811b05cddfba.txt` proves ownership, and the `indexnow` job in
+`.github/workflows/deploy.yml` runs `scripts/indexnow.mjs` after every deploy to submit each URL
+in the live sitemap. It never fails the run; problems appear as warnings. Keep the key file.
+Dry run: `node scripts/indexnow.mjs --dry-run`.
+
 ## Editing content
 
 Everything the site and the AI say comes from **`src/data/profile.ts`**. Fields marked `TODO(vikas)`
