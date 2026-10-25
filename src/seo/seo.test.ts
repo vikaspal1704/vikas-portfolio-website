@@ -63,4 +63,12 @@ describe('crawl files', () => {
     expect(arena.match(/<h1>/g)).toHaveLength(1);
     expect(arena).toContain('"@type":"SoftwareSourceCode"');
   });
+  it.each(pagedProjects.map((p) => [p.id, p] as const))('%s page passes the OpenSEO length and thin-content checks', (_, p) => {
+    const html = projectPage(p);
+    const unescape = (s: string) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+    expect(unescape(html.match(/<title>(.*)<\/title>/)![1]!).length).toBeLessThanOrEqual(60);
+    expect(unescape(html.match(/<meta name="description" content="(.*)" \/>/)![1]!).length).toBeLessThanOrEqual(160);
+    const text = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ');
+    expect(text.split(/\s+/).filter((w) => /\w/.test(w)).length).toBeGreaterThanOrEqual(150);
+  });
 });

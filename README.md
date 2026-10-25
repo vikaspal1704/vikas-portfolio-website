@@ -32,10 +32,19 @@ Bing Webmaster Tools caps how many `*.is-a.dev` sites it accepts, so Bing is fed
 in the live sitemap. It never fails the run; problems appear as warnings. Keep the key file.
 Dry run: `node scripts/indexnow.mjs --dry-run`.
 
+### SEO audit (OpenSEO)
+
+The `seo-audit` CI job crawls the built site with the site-audit engine from
+[OpenSEO](https://github.com/every-app/open-seo), an open-source Semrush/Ahrefs alternative. It checks titles, meta
+descriptions, headings, thin content, canonicals, broken links, redirects and orphan pages, and fails on any critical or
+warning issue. The audit is free; OpenSEO's keyword, rank and backlink features need a paid DataForSEO key and aren't
+used here. Run it locally after a build with `npm run build && npm run audit:seo`. `seo-audit/audit.sh` pins the
+OpenSEO commit; bump it on purpose, because new versions can add checks.
+
 ## Editing content
 
 Everything the site and the AI say comes from **`src/data/profile.ts`**. Fields marked `TODO(vikas)`
-(education, résumé PDF, calendar link, quantified ViewTrade impact) are hidden until they are filled in.
+(currently the headshot) are hidden until they are filled in.
 ## Résumé
 
 `public/vikas-pal-resume.pdf` is rendered from `resume/resume.html` (one US Letter page, real TrueType text so

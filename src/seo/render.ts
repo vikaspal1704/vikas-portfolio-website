@@ -136,14 +136,18 @@ export const jsonLdTag = () => ld(jsonLd());
 /** Standalone, dependency-free page per project. */
 export function projectPage(p: Project): string {
   const url = abs(projectPath(p));
-  const title = `${p.name}: ${p.tagline.replace(/\.$/, '')} · ${profile.name}`;
+  const title = `${p.seoTitle ?? p.name} · ${profile.name}`;
+  const credit = `${p.tagline} ${p.signal} Built by ${profile.name}.`;
+  const description = credit.length <= 160 ? credit : `${p.tagline} ${p.signal}`;
+  const shows = skills.filter((s) => s.evidence.includes(p.id));
+  const others = pagedProjects.filter((o) => o.id !== p.id);
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(`${p.tagline} ${p.signal} Built by ${profile.name}.`)}" />
+<meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${url}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="${url}" />
@@ -194,6 +198,10 @@ ${ld({ '@context': 'https://schema.org', ...projectLd(p) })}
   <ul>${p.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>
   <h2>Stack</h2>
   <p>${p.stack.map(esc).join(' · ')}</p>
+${shows.length ? `  <h2>Skills it demonstrates</h2>
+  <p>${shows.map((s) => esc(s.name)).join(' · ')}</p>
+` : ''}  <h2>More projects by ${esc(profile.name)}</h2>
+  <ul>${others.map((o) => `<li><a href="../${o.id}/">${esc(o.name)}</a>: ${esc(o.tagline)}</li>`).join('')}</ul>
   <footer>Built by <a href="../../">${esc(profile.name)}</a>, ${esc(profile.headline)}, ${esc(profile.city)}, ${esc(profile.country)}. <a href="${esc(profile.calendarUrl ?? `mailto:${profile.email}`)}">Book a call</a>.</footer>
 </main>
 </body>

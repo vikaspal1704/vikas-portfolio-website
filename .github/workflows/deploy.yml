@@ -31,6 +31,22 @@ jobs:
         with:
           path: dist
 
+  # Crawls the build with OpenSEO's site audit and fails on critical or warning issues.
+  # Doesn't block the deploy. See seo-audit/audit.sh.
+  seo-audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: bash seo-audit/audit.sh
+
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: build

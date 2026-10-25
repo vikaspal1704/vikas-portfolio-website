@@ -22,6 +22,8 @@ export interface Project {
   symbol: string;
   name: string;
   tagline: string;
+  /** Search-result title for the project page, under ~48 chars so " · Vikas Pal" still fits in 60. */
+  seoTitle?: string;
   summary: string;
   /** Why a hiring manager should care, in one line. */
   signal: string;
@@ -190,6 +192,7 @@ export const projects: Project[] = [
     symbol: 'ARENA',
     name: 'Arena',
     tagline: 'A stock exchange you can play, replay and audit in your browser.',
+    seoTitle: 'Arena: Rust Matching Engine in WebAssembly',
     summary:
       'A matching engine written in Rust with no dependencies and compiled to an 80 KB WebAssembly module with no JS glue. It runs a market of seeded bots, a lossy L2 feed with gap recovery, and a journal you can rewind and verify. This page is running that same engine right now.',
     signal: 'Exchange-grade matching with real latency numbers and proven determinism.',
@@ -219,6 +222,7 @@ export const projects: Project[] = [
     symbol: 'FOWRAP',
     name: 'F&O Wrapped',
     tagline: 'Your F&O trading year, Wrapped, with honest numbers.',
+    seoTitle: 'F&O Wrapped: Your F&O Trading Year, Wrapped',
     summary:
       'Indian F&O traders drop in a broker trade file and get shareable story cards about their year. Parsing, FIFO round-trip matching and analytics run in a Web Worker, and no data leaves the device.',
     signal: 'Consumer fintech product thinking: privacy by architecture and numbers you can audit.',
@@ -245,6 +249,7 @@ export const projects: Project[] = [
     symbol: 'FIXLAB',
     name: 'FIX Protocol Lab',
     tagline: 'See FIX working live, one message at a time.',
+    seoTitle: 'FIX Protocol Lab: Live FIX Session Visualiser',
     summary:
       'A FIX tag=value codec and a TCP session engine built from scratch, with a visual front end. Watch two counterparties log on, trade, lose a message and recover it, across FIX 4.2, 4.3, 4.4 and 5.0 SP2.',
     signal: 'Knows the wire protocols institutional trading actually runs on.',
@@ -271,6 +276,7 @@ export const projects: Project[] = [
     symbol: 'RCRT',
     name: 'Recruiter Backend',
     tagline: 'Semantic talent search: resume in, ranked candidates out.',
+    seoTitle: 'Recruiter Backend: Semantic Talent Search API',
     summary:
       'A FastAPI service that ingests PDF resumes, extracts structured profiles with an LLM in JSON mode, embeds them in Pinecone for semantic search, and sends outreach. Every route is authenticated, and the tests are fully mocked in CI.',
     signal: 'Production-shaped LLM backend: RAG retrieval, auth, tests, Docker.',
@@ -297,6 +303,7 @@ export const projects: Project[] = [
     symbol: 'LOBF',
     name: 'Live Orderbook Feed',
     tagline: 'Real-time L2 book over WebSockets: snapshot plus deltas.',
+    seoTitle: 'Live Orderbook Feed: L2 Book over WebSockets',
     summary:
       'A WebSocket fan-out service for an L2 order book: sequence numbers, snapshot plus incremental protocol, heartbeats, reconnect recovery and slow-consumer backpressure.',
     signal: 'The market-data side of an exchange, done properly.',
@@ -322,6 +329,7 @@ export const projects: Project[] = [
     symbol: 'MME',
     name: 'Mini Matching Engine',
     tagline: 'The reference CLOB: price-time priority, in Python.',
+    seoTitle: 'Mini Matching Engine: Python CLOB Reference',
     summary:
       'An in-memory central limit order book that serves as the reference implementation Arena is differential-tested against. Its playground runs the real Python package in the browser through Pyodide.',
     signal: 'Spec-driven engineering: a written contract that both humans and AI agents build against.',
@@ -346,6 +354,7 @@ export const projects: Project[] = [
     symbol: 'SMPA',
     name: 'Social Media Performance Analysis',
     tagline: 'An LLM analytics pipeline over engagement data.',
+    seoTitle: 'Social Media Analysis: LLM Analytics Pipeline',
     summary: 'Langflow orchestration with GPT over a DataStax Astra DB vector store, analysing social-media engagement data.',
     signal: 'Early, hands-on LLM pipeline work.',
     stats: [
