@@ -61,7 +61,7 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
           <button className="chip" onClick={() => onAsk('Why hire Vikas?')}>Why hire Vikas?</button>
           <a className="chip" href={`mailto:${profile.email}`} style={{ textDecoration: 'none' }}>✉ {profile.email}</a>
           {profile.calendarUrl && (
-            <a className="chip" href={profile.calendarUrl} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>📅 Book a 30-min call</a>
+            <a className="chip" href={profile.calendarUrl} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>📅 Book a call</a>
           )}
         </div>
         <div className="faq reveal">

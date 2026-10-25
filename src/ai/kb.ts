@@ -140,7 +140,7 @@ function curatedDocs(): Doc[] {
       id: 'contact',
       title: 'Contact',
       answer: [
-        profile.calendarUrl ? `The fastest route is to book a 30-minute call: ${profile.calendarUrl}. Or email ${profile.email}.` : `The fastest route is email: ${profile.email}.`,
+        profile.calendarUrl ? `The fastest route is to book a call: ${profile.calendarUrl}. Or email ${profile.email}.` : `The fastest route is email: ${profile.email}.`,
         `- LinkedIn: ${profile.links.linkedin}`,
         `- GitHub: ${profile.links.github}`,
         profile.resumeUrl ? `- Résumé (PDF): download it from the Résumé button at the top of the page` : '',

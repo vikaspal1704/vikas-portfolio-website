@@ -82,8 +82,7 @@ export const profile = {
   },
   /** Built from resume/resume.html; see README. */
   resumeUrl: 'vikas-pal-resume.pdf' as string | null,
-  // TODO(vikas): add a Calendly / Cal.com link if you want "Book a call".
-  calendarUrl: 'https://calendly.com/palv499/30min' as string | null,
+  calendarUrl: 'https://cal.com/vikas-pal-2mz8du' as string | null,
   education: 'BE in Computer Science, LDRP Institute of Technology & Research (Gujarat Technological University), 2019–2023' as string | null,
   /** First full-time engineering role (CultureX, July 2022). */
   careerStart: { year: 2022, month: 7 },
@@ -129,7 +128,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'How do I contact Vikas Pal?',
-    a: 'Book a 30-minute call at calendly.com/palv499/30min, or email palv499@gmail.com.',
+    a: 'Book a call at cal.com/vikas-pal-2mz8du, or email palv499@gmail.com.',
   },
 ];
 

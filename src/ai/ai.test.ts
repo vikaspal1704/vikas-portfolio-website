@@ -129,6 +129,6 @@ describe('latest facts', () => {
     expect(search('Tell me about the frontend platform he built')[0]?.doc.answer).toContain('300+');
   });
   it('offers the calendar link for contact', () => {
-    expect(search('how can I schedule a call')[0]?.doc.answer).toContain('calendly.com/palv499/30min');
+    expect(search('how can I schedule a call')[0]?.doc.answer).toContain('cal.com/vikas-pal-2mz8du');
   });
 });
