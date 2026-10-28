@@ -260,11 +260,13 @@ export function Ledger() {
                     )}
                   </h3>
                   <p>{r.summary}</p>
-                  <ul>
-                    {r.highlights.map((h) => (
-                      <li key={h}>{h}</li>
-                    ))}
-                  </ul>
+                  {r.highlights.length > 0 && (
+                    <ul>
+                      {r.highlights.map((h) => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                  )}
                   <div className="stack">
                     {r.stack.map((s) => (
                       <span key={s}>{s}</span>

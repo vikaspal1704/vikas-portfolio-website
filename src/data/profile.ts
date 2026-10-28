@@ -62,10 +62,12 @@ export interface Skill {
 export const profile = {
   name: 'Vikas Pal',
   handle: 'vikaspal1704',
-  headline: 'Forward Deployed Engineer | Applied AI × Fintech',
+  headline: 'Software Engineer, Applied AI × Fintech',
+  /** The role he is looking for; printed next to the headline. Never his job title. */
+  openTo: 'Open to Forward Deployed and Applied AI roles, remote/global',
   pitch:
-    'I created and lead ViewTrade’s unified front-end platform for brokerages, I build real-time trading infrastructure, and I ship AI platforms that stay up when traffic and token bills spike. Off the clock, I build matching engines, market-data feeds and FIX sessions.',
-  location: 'Ahmedabad, India (IST, UTC+5:30)',
+    'I took a white-label trading platform from idea to product at ViewTrade (it merged 7 frontends into one and serves 300+ advisory and retail clients), I build it with AI agents (Claude Code) from clear specs and tests, and I ship AI platforms that stay up when traffic and token bills spike. Off the clock, I build matching engines, market-data feeds and FIX sessions.',
+  location: 'Ahmedabad, Gujarat, India (IST, UTC+5:30)',
   city: 'Ahmedabad',
   region: 'Gujarat',
   country: 'India',
@@ -85,25 +87,25 @@ export const profile = {
   /** Built from resume/resume.html; see README. */
   resumeUrl: 'vikas-pal-resume.pdf' as string | null,
   calendarUrl: 'https://cal.com/vikas-pal-2mz8du' as string | null,
-  education: 'BE in Computer Science, LDRP Institute of Technology & Research (Gujarat Technological University), 2019–2023' as string | null,
-  /** First full-time engineering role (CultureX, July 2022). */
-  careerStart: { year: 2022, month: 7 },
+  education: 'B.E. in Computer Engineering, LDRP Institute of Technology & Research (Gujarat Technological University), 2019–2023' as string | null,
+  /** First full-time role (Zeus Learning, June 2023); internships from Jul 2022 listed separately. */
+  careerStart: { year: 2023, month: 6 },
   /** Outcomes already delivered; shown opposite the skills in the order book. */
   outcomes: [
-    { metric: '7 → 1', label: 'Frontend codebases merged into the platform he created and leads at ViewTrade' },
-    { metric: '300+', label: 'Advisory and retail clients served by that single platform' },
+    { metric: '7 → 1', label: 'Frontend codebases merged into ViewTrade’s white-label trading platform' },
+    { metric: '300+', label: 'Advisory and retail clients served by that platform' },
     { metric: '99.9%', label: 'Uptime under peak at ~50,000 requests/day (Zeus Learning)' },
     { metric: '−40%', label: 'LLM costs, via semantic caching, with no model change' },
     { metric: '~50%', label: 'Faster deploys after setting up CI/CD with DevOps' },
     { metric: '4 devs', label: 'Led to ship a reporting SDK under hard client deadlines' },
-    { metric: '~2M/s', label: 'Orders matched by his Rust engine, p50 ≈ 350 ns (Arena)' },
+    { metric: '~2M/s', label: 'Commands handled in the browser by his Rust engine (Arena, WebAssembly)' },
   ],
   workingStyle: [
     'Production first: services that stay up under peak, with uptime, cost and deploy speed treated as features (99.9% uptime, ~40% LLM cost cut, ~50% faster deploys at Zeus Learning).',
     'Docs first: every flagship repo starts with a PRD, TRD, API contract, acceptance criteria and an AGENT_BRIEF so humans and AI coding agents can build without guessing.',
     'Correctness is proven, not claimed: differential tests against a reference engine, golden vectors, Playwright end-to-end tests and live smoke tests in CI.',
-    'Measure before optimising: Arena’s p99 dropped from 16.8 µs to 1.6 µs once profiling showed page faults, not matching logic, caused the tail.',
-    'Leads by building: created ViewTrade’s front-end platform from scratch and leads a global team on it; earlier, led 4 developers to deliver an SDK under hard deadlines.',
+    'Measure before optimising: in Arena, profiling showed page faults, not matching logic, caused the latency tail, and preallocating fixed it.',
+    'Owns things end to end: took ViewTrade’s white-label trading platform from idea to product and built it full-stack, and now guides the global team building on it; earlier, led 4 developers to deliver an SDK under hard deadlines.',
   ],
 };
 
@@ -114,7 +116,7 @@ export const profile = {
 export const faqs: { q: string; a: string }[] = [
   {
     q: 'Who is Vikas Pal?',
-    a: 'Vikas Pal is a Forward Deployed Engineer working across applied AI and fintech, based in Ahmedabad, India. He is a Software Development Engineer at ViewTrade, where he created and leads a unified front-end platform that merged 7 frontend codebases into one and serves 300+ advisory and retail clients.',
+    a: 'Vikas Pal is a software engineer working across applied AI and fintech, based in Ahmedabad, India. He is a Software Development Engineer (SDE) at ViewTrade, where he took a white-label trading platform from idea to product and built it full-stack; it merged 7 frontend codebases into one and serves 300+ advisory and retail clients. He also built the developer portal that makes onboarding smooth for broker firms. He is open to Forward Deployed Engineer and Applied AI roles.',
   },
   {
     q: 'What AI work has Vikas Pal shipped?',
@@ -122,7 +124,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'What is Arena?',
-    a: 'Arena is Vikas Pal’s open-source stock exchange in the browser: a dependency-free Rust matching engine compiled to WebAssembly that matches about 2 million orders per second (p50 ≈ 350 ns), with deterministic replay and an L2 market-data feed with gap recovery.',
+    a: 'Arena is Vikas Pal’s open-source stock exchange in the browser: a dependency-free Rust matching engine compiled to WebAssembly that handles about 2 million commands a second in the browser, with deterministic replay and an L2 market-data feed with gap recovery.',
   },
   {
     q: 'Where is Vikas Pal based, and is he open to relocation?',
@@ -139,28 +141,28 @@ export const roles: Role[] = [
     id: 'viewtrade',
     company: 'ViewTrade Holding Corp.',
     companyUrl: 'https://viewtrade.com',
-    title: 'Software Development Engineer I',
+    title: 'Software Development Engineer (SDE)',
     start: 'Aug 2025',
     end: null,
     location: 'GIFT City, Gandhinagar',
     summary:
-      'Created, and leads, ViewTrade’s unified front-end platform: a configurable workspace builder for brokerage and wealth-tech clients. Also builds the real-time trading infrastructure behind it.',
+      'Building a white-label trading platform that lets broker firms launch their own branded apps, using Claude Code and agentic workflows throughout.',
     highlights: [
-      'Conceived and built the platform from scratch, and leads it with a global team of US engineers and external vendors',
-      'Merged 7 separate frontend codebases into the single platform, which now serves 300+ advisory and retail clients',
-      'Brought ViewTrade’s internal frontends onto the same architecture',
-      'Business clients configure layouts for their firm and its users without new code',
-      'Real-time trading paths over WebSockets and distributed systems, handling stale quotes, fan-out and backpressure',
-      'Drives adoption of AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability',
+      'Took a white-label trading platform from idea to product: broker firms design their own web and mobile trading apps from widgets, branding and feature flags; it merged 7 frontends into one and serves 300+ advisory and retail clients',
+      'Own it end to end: shaped the product and built it full-stack, and now guide the global team building on it',
+      'Brought AI-first development to the team: Claude Code and other agents build from clear specs and repo guardrails, and new features start from written scenarios and failing tests to protect money logic',
+      'Created the developer portal (API and Web SDK docs and onboarding guides) that makes onboarding smooth for broker firms integrating with the platform',
+      'Built core trading features: a multi-leg options strategy builder with payoff charts and Greeks, order tickets, stock, ETF and funds screens, and live prices that recover after a reconnect',
+      'Sole developer modernizing the .NET/C# buying-power and cash-settlement system, with AI agents helping read, refactor and test a large legacy codebase safely',
     ],
-    stack: ['Platform architecture', '.NET', 'AWS', 'WebSockets', 'Distributed systems', 'Claude tooling'],
+    stack: ['.NET / C#', 'TypeScript', 'React', 'WebSockets', 'AWS', 'Claude Code', 'AI agents'],
   },
   {
     id: 'zeus',
     company: 'Zeus Learning',
     companyUrl: 'https://zeuslearning.com',
     title: 'Software Developer',
-    start: 'Jan 2023',
+    start: 'Jun 2023',
     end: 'Jul 2025',
     location: 'Mumbai',
     summary: 'Built an AI-powered test platform on Next.js and Python/Django, and ran it in production at scale.',
@@ -173,10 +175,22 @@ export const roles: Role[] = [
     stack: ['Next.js', 'Python', 'Django', '.NET', 'AWS', 'LLMs', 'Semantic caching', 'CI/CD'],
   },
   {
+    id: 'zeus-intern',
+    company: 'Zeus Learning',
+    companyUrl: 'https://zeuslearning.com',
+    title: 'Software Developer Intern',
+    start: 'Jan 2023',
+    end: 'May 2023',
+    location: 'Mumbai',
+    summary: 'Joined the AI-powered test platform team as an intern and converted to a full-time Software Developer in June 2023.',
+    highlights: [],
+    stack: ['Python', 'Django', 'Next.js'],
+  },
+  {
     id: 'culturex',
     company: 'CultureX Entertainment',
     companyUrl: null,
-    title: 'Product Development Engineer',
+    title: 'Full Stack Developer Intern',
     start: 'Jul 2022',
     end: 'Dec 2022',
     location: null,
@@ -194,12 +208,12 @@ export const projects: Project[] = [
     tagline: 'A stock exchange you can play, replay and audit in your browser.',
     seoTitle: 'Arena: Rust Matching Engine in WebAssembly',
     summary:
-      'A matching engine written in Rust with no dependencies and compiled to an 80 KB WebAssembly module with no JS glue. It runs a market of seeded bots, a lossy L2 feed with gap recovery, and a journal you can rewind and verify. This page is running that same engine right now.',
+      'A matching engine written in Rust with no dependencies and compiled to a WebAssembly module under 90 KB with no JS glue. It runs a market of seeded bots, a lossy L2 feed with gap recovery, and a journal you can rewind and verify. This page is running that same engine right now.',
     signal: 'Exchange-grade matching with real latency numbers and proven determinism.',
     stats: [
-      { label: 'throughput', value: '~2M orders/s' },
-      { label: 'p50 latency', value: '≈350 ns' },
-      { label: 'p99 latency', value: '≈1.6 µs' },
+      { label: 'in browser', value: '~2M cmds/s' },
+      { label: 'native p50', value: '220–320 ns' },
+      { label: 'native p99', value: '0.9–1.3 µs' },
       { label: 'diff-tested', value: '1.5M cmds' },
     ],
     stack: ['Rust', 'WebAssembly', 'TypeScript', 'React', 'Web Workers', 'Vitest', 'Playwright'],
@@ -213,7 +227,7 @@ export const projects: Project[] = [
       'Differential-tested in CI against an independent Python engine on 1.5 million random commands',
       'Journal + FNV-1a fingerprint chain: rewind to any point and verify the replay matches what happened live',
       'Chaos switch drops market-data packets; the client detects gaps and heals from snapshots',
-      'Preallocating the journal cut p99 from 16.8 µs to 1.6 µs after profiling found page faults',
+      'Measure before optimising: in Arena, profiling showed page faults, not matching logic, caused the latency tail, and preallocating fixed it.',
       'Real-market mode streams live NIFTY futures through a local Kite Connect bridge',
     ],
   },

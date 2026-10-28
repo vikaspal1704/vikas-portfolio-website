@@ -124,7 +124,7 @@ describe('cloud and .NET', () => {
 describe('latest facts', () => {
   it('uses the official title and the platform metrics', () => {
     const role = docs.find((d) => d.id === 'role:viewtrade')!;
-    expect(role.title).toContain('Software Development Engineer I');
+    expect(role.title).toContain('Software Development Engineer (SDE)');
     expect(role.title).not.toContain('Lead');
     expect(search('Tell me about the frontend platform he built')[0]?.doc.answer).toContain('300+');
   });

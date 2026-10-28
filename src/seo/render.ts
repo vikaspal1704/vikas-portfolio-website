@@ -48,7 +48,7 @@ export function staticRoot(): string {
       <h3>${esc(r.title)}, ${esc(r.company)}</h3>
       <p>${esc(period(r.start, r.end))}${r.location ? ` · ${esc(r.location)}` : ''}</p>
       <p>${esc(r.summary)}</p>
-      <ul>${r.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>
+      ${r.highlights.length ? `<ul>${r.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
     </article>`,
       )
       .join('\n    ')}
@@ -217,7 +217,7 @@ export function llmsTxt(): string {
 ${profile.remote}. Contact: ${profile.email}${profile.calendarUrl ? ` · ${profile.calendarUrl}` : ''}.
 
 ## Experience
-${roles.map((r) => `- ${r.title}, ${r.company} (${period(r.start, r.end)}): ${r.summary} ${r.highlights.join('; ')}.`).join('\n')}
+${roles.map((r) => `- ${r.title}, ${r.company} (${period(r.start, r.end)}): ${r.summary}${r.highlights.length ? ` ${r.highlights.join('; ')}.` : ''}`).join('\n')}
 - Education: ${profile.education}
 
 ## Projects

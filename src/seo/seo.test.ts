@@ -7,14 +7,14 @@ describe('static root (what non-JS crawlers read)', () => {
   it('has one H1 with the name, and the headline and city', () => {
     expect(html.match(/<h1>/g)).toHaveLength(1);
     expect(html).toContain('<h1>Vikas Pal</h1>');
-    expect(html).toContain('Forward Deployed Engineer | Applied AI × Fintech');
+    expect(html).toContain('Software Engineer, Applied AI × Fintech');
     expect(html).toContain('Ahmedabad');
   });
   it('carries the same facts as the app', () => {
     for (const r of roles) expect(html).toContain(r.company);
     for (const p of pagedProjects) expect(html).toContain(`href="projects/${p.id}/"`);
     for (const f of faqs) expect(html).toContain(f.q);
-    expect(html).toContain('Software Development Engineer I');
+    expect(html).toContain('Software Development Engineer (SDE)');
     expect(html).toContain('300+');
   });
   it('escapes HTML', () => {
@@ -54,7 +54,7 @@ describe('crawl files', () => {
   });
   it('llms.txt is markdown with a summary line', () => {
     const t = llmsTxt();
-    expect(t.startsWith('# Vikas Pal\n\n> Forward Deployed Engineer')).toBe(true);
+    expect(t.startsWith('# Vikas Pal\n\n> Software Engineer, Applied AI × Fintech')).toBe(true);
     expect(t).toContain('https://vikaspal.is-a.dev/projects/arena/');
   });
   it('project pages have their own canonical, H1 and JSON-LD', () => {
