@@ -6,16 +6,16 @@
 <!-- Source for public/vikas-pal-resume.pdf. Keep facts in sync with src/data/profile.ts.
      Rebuild: see README ("Résumé"). Single column, real text, no tables, so ATS parsers read it cleanly. -->
 <style>
-  @page { size: Letter; margin: 0.42in 0.5in; }
+  @page { size: Letter; margin: 0.36in 0.5in; }
   * { box-sizing: border-box; }
-  body { margin: 0; font: 10pt/1.32 Carlito, Calibri, 'Liberation Sans', Arial, sans-serif; color: #15191e; }
+  body { margin: 0; font: 10pt/1.26 Carlito, Calibri, 'Liberation Sans', Arial, sans-serif; color: #15191e; }
   a { color: inherit; text-decoration: none; }
   header { border-bottom: 1.5pt solid #0c8a5e; padding-bottom: 7pt; margin-bottom: 8pt; }
   h1 { font-size: 21pt; line-height: 1; margin: 0 0 3pt; letter-spacing: -0.3pt; font-weight: 700; }
   .role { font-size: 10.5pt; font-weight: 600; color: #0c8a5e; margin: 0 0 4pt; }
   .contact { font-size: 8.8pt; color: #39424c; }
   .contact span + span::before { content: ' · '; color: #9aa4ae; }
-  h2 { font-size: 9pt; letter-spacing: 1.1pt; text-transform: uppercase; color: #0c8a5e; margin: 8pt 0 3pt; font-weight: 700; }
+  h2 { font-size: 9pt; letter-spacing: 1.1pt; text-transform: uppercase; color: #0c8a5e; margin: 6pt 0 3pt; font-weight: 700; }
   p { margin: 0 0 4pt; }
   .job { margin-bottom: 5pt; }
   .jh { display: flex; justify-content: space-between; gap: 10pt; font-weight: 600; }
@@ -32,9 +32,9 @@
 <body>
 <header>
   <h1>Vikas Pal</h1>
-  <p class="role">Forward Deployed Engineer | Applied AI × Fintech · Platform, real-time trading infrastructure, production LLM systems</p>
+  <p class="role">Software Engineer, Applied AI × Fintech · Open to Forward Deployed &amp; Applied AI roles</p>
   <div class="contact">
-    <span>Ahmedabad, India (IST) · open to remote, hybrid or on-site worldwide</span>
+    <span>Ahmedabad, Gujarat, India (IST) · open to remote, hybrid or on-site worldwide</span>
     <span><a href="mailto:palv499@gmail.com">palv499@gmail.com</a></span>
     <span><a href="https://www.linkedin.com/in/vikaspal1704/">linkedin.com/in/vikaspal1704</a></span>
     <span><a href="https://github.com/vikaspal1704">github.com/vikaspal1704</a></span>
@@ -44,21 +44,23 @@
 </header>
 
 <h2>Summary</h2>
-<p>Software engineer with 4+ years shipping production systems where fintech meets AI. I created, and lead, a brokerage-infrastructure company’s unified front-end platform, which merged 7 frontends into one and serves 300+ clients. Previously ran an LLM platform at 99.9% uptime while cutting model costs ~40%. In open source: a Rust matching engine at ~2M orders/s.</p>
+<p>Software engineer with 3+ years full-time, plus internships, shipping production systems where fintech meets AI. At ViewTrade I took a white-label trading platform from idea to product; it merged 7 frontends into one and serves 300+ advisory and retail clients, and I build it with AI agents from clear specs and tests. Previously ran an LLM platform at 99.9% uptime while cutting model costs ~40%. In open source: a Rust matching engine at about 2M commands/s in the browser.</p>
 
 <h2>Experience</h2>
 <div class="job">
-  <div class="jh"><span>ViewTrade Holding Corp. · Software Development Engineer I</span><span class="when">Aug 2025 – Present</span></div>
+  <div class="jh"><span>ViewTrade Holding Corp. · Software Development Engineer (SDE)</span><span class="when">Aug 2025 – Present</span></div>
   <div class="sub">GIFT City, Gandhinagar · API-driven brokerage and wealth-tech infrastructure</div>
   <ul>
-    <li>Conceived and built, from scratch, the company’s <b>unified, configurable front-end platform</b>, and lead it with a <b>global team</b> of US engineers and external vendors.</li>
-    <li><b>Merged 7 frontend codebases into one platform serving 300+ advisory and retail clients</b>, and brought internal frontends onto the same architecture. Clients configure layouts for their firm and users without new code.</li>
-    <li>Build real-time trading paths over <b>WebSockets and distributed systems</b> on <b>.NET and AWS</b>, handling stale quotes, fan-out and backpressure where correctness and uptime come first.</li>
-    <li>Drive adoption of AI-native, Claude-ecosystem tooling for developer productivity without giving up reliability.</li>
+    <li>Took a <b>white-label trading platform from idea to product</b>: broker firms design their own web and mobile trading apps from widgets, branding and feature flags; it <b>merged 7 frontends into one and serves 300+ advisory and retail clients</b>.</li>
+    <li>Own it end to end: shaped the product and built it full-stack, and now guide the global team building on it.</li>
+    <li>Brought <b>AI-first development</b> to the team: Claude Code and other agents build from clear specs and repo guardrails, and new features start from written scenarios and failing tests to protect money logic.</li>
+    <li>Created the <b>developer portal</b> (API and Web SDK docs and onboarding guides) that makes onboarding smooth for broker firms integrating with the platform.</li>
+    <li>Built core trading features: a multi-leg options strategy builder with payoff charts and Greeks, order tickets, stock, ETF and funds screens, and live prices that recover after a reconnect.</li>
+    <li>Sole developer modernizing the <b>.NET/C# buying-power and cash-settlement system</b>, with AI agents helping read, refactor and test a large legacy codebase safely.</li>
   </ul>
 </div>
 <div class="job">
-  <div class="jh"><span>Zeus Learning · Software Developer</span><span class="when">Jan 2023 – Jul 2025</span></div>
+  <div class="jh"><span>Zeus Learning · Software Developer</span><span class="when">Jun 2023 – Jul 2025</span></div>
   <div class="sub">Mumbai · AI-powered test platform (Next.js, Python/Django, .NET, AWS)</div>
   <ul>
     <li>Built and ran the platform at <b>~50,000 requests/day with 99.9% uptime</b> under peak load.</li>
@@ -68,7 +70,10 @@
   </ul>
 </div>
 <div class="job">
-  <div class="jh"><span>CultureX Entertainment · Product Development Engineer</span><span class="when">Jul 2022 – Dec 2022</span></div>
+  <div class="jh"><span>Zeus Learning · Software Developer Intern</span><span class="when">Jan 2023 – May 2023</span></div>
+</div>
+<div class="job">
+  <div class="jh"><span>CultureX Entertainment · Full Stack Developer Intern</span><span class="when">Jul 2022 – Dec 2022</span></div>
   <ul>
     <li>Built web pages and product features for CreatorX in a team of 4; code reviews and pre-release bug fixing.</li>
   </ul>
@@ -76,11 +81,11 @@
 
 <h2>Selected open-source projects</h2>
 <ul class="proj">
-  <li><b>Arena</b>: a stock exchange in the browser. Dependency-free Rust matching engine compiled to an 80 KB WebAssembly module; <b>~2M orders/s, p50 ≈ 350 ns, p99 ≈ 1.6 µs</b> on one core. Differential-tested in CI against an independent Python engine on 1.5M random commands. Journal replay with a fingerprint chain; profiling-led fix took p99 from 16.8 µs to 1.6 µs.</li>
-  <li><b>FIX Protocol Lab</b>: FIX codec and TCP session engine from scratch (FIX 4.2–5.0 SP2) with resend and gap fill, plus a live visual front end; Node.js, TypeScript, React, Playwright.</li>
+  <li><b>Arena</b>: a stock exchange in the browser. A dependency-free Rust matching engine, compiled to WebAssembly (under 90 KB): <b>about 2M commands/s in the browser; natively 2.4–3.7M/s, p99 ≈ 0.9–1.3 µs</b>. Differential-tested in CI against an independent Python engine on 1.5M random commands; deterministic journal replay.</li>
+  <li><b>FIX Protocol Lab</b>: FIX codec and TCP session engine (FIX 4.2–5.0 SP2) with resend and gap fill, plus a live visual front end.</li>
   <li><b>F&amp;O Wrapped</b>: privacy-first P&amp;L analytics for Indian F&amp;O traders across 4 brokers; FIFO in integer paise, fully in-browser PWA.</li>
   <li><b>Recruiter Backend</b>: FastAPI service for LLM resume parsing and Pinecone semantic search; auth, mocked tests, Docker CI.</li>
-  <li><b>Live Orderbook Feed</b> (WebSocket L2 fan-out with backpressure) and <b>this portfolio</b> (on-device LLM via WebLLM, retrieval, JD fit check).</li>
+  <li><b>Live Orderbook Feed</b> (WebSocket L2 fan-out with backpressure) and <b>this portfolio</b> (on-device LLM, retrieval, JD fit check).</li>
 </ul>
 
 <h2>Skills</h2>
@@ -89,12 +94,12 @@
   <p><b>Backend</b> .NET, Django, FastAPI, Node.js, distributed systems, microservices, WebSockets, TCP, PostgreSQL</p>
   <p><b>AWS</b> EC2, ECS / EKS, Lambda, API Gateway, S3, RDS, DynamoDB, SQS, SNS, Kinesis</p>
   <p><b>Frontend</b> Front-end platform architecture, React, Next.js, Redux Toolkit, WebAssembly, Web Workers</p>
-  <p><b>AI / LLM</b> Production LLM platforms, semantic caching, RAG and vector search (Pinecone), WebLLM / WebGPU, Claude tooling</p>
+  <p><b>AI / LLM</b> Production LLM platforms, semantic caching, RAG / vector search (Pinecone), Claude Code, AI agents, WebLLM</p>
   <p><b>Fintech</b> Matching engines, L2 market data, FIX, P&amp;L and charges, brokerage / wealth-tech APIs</p>
   <p><b>Quality</b> Docker, GitHub Actions CI/CD, pytest, Vitest, Playwright, differential and golden-vector testing</p>
 </div>
 
 <h2>Education</h2>
-<div class="jh"><span>BE in Computer Science · LDRP Institute of Technology &amp; Research (Gujarat Technological University)</span><span class="when">2019 – 2023</span></div>
+<div class="jh"><span>B.E. in Computer Engineering · LDRP Institute of Technology &amp; Research (Gujarat Technological University)</span><span class="when">2019 – 2023</span></div>
 </body>
 </html>
