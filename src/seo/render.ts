@@ -21,7 +21,7 @@ export const projectPath = (p: Project) => `projects/${p.id}/`;
 
 export const meta = {
   title: `${profile.name} · ${profile.headline}`,
-  description: `${profile.name}, ${profile.headline.split(' | ')[0]} in ${profile.city}, ${profile.country}. Applied AI × fintech: real-time trading systems, LLM platforms and a Rust exchange engine.`,
+  description: `${profile.name}, software engineer in ${profile.city}, ${profile.country}. Applied AI × fintech, open to Forward Deployed roles: trading systems, LLM platforms, a Rust exchange engine.`,
 };
 
 const groups = [...new Set(skills.map((s) => s.group))];
@@ -32,7 +32,7 @@ export function staticRoot(): string {
 <div class="static-page">
   <header>
     <h1>${esc(profile.name)}</h1>
-    <p class="static-role">${esc(profile.headline)} · ${esc(profile.city)}, ${esc(profile.country)}</p>
+    <p class="static-role">${esc(profile.headline)} · ${esc(profile.openTo)} · ${esc(profile.city)}, ${esc(profile.country)}</p>
   </header>
   <section aria-labelledby="s-about">
     <h2 id="s-about">About Vikas Pal</h2>
@@ -76,7 +76,7 @@ export function staticRoot(): string {
     <h2 id="s-edu">Education</h2>
     <p>${esc(profile.education ?? '')}</p>
   </section>
-  <p class="static-note">Currently ${esc(role.title)} at ${esc(role.company)}. ${yearsExperience()}+ years of professional experience. This page runs a live exchange engine and an AI analyst when JavaScript is on.</p>
+  <p class="static-note">Currently ${esc(role.title)} at ${esc(role.company)}. ${yearsExperience()}+ years full-time, plus internships. This page runs a live exchange engine and an AI analyst when JavaScript is on.</p>
 </div>`;
 }
 
@@ -101,13 +101,23 @@ export function jsonLd(): object {
         name: profile.name,
         url: SITE,
         ...(profile.photo ? { image: abs(profile.photo) } : {}),
-        jobTitle: profile.headline,
+        jobTitle: 'Software Development Engineer',
         description: faqs[0]!.a,
         email: `mailto:${profile.email}`,
-        address: { '@type': 'PostalAddress', addressLocality: profile.city, addressRegion: profile.region, addressCountry: 'IN' },
+        address: { '@type': 'PostalAddress', addressLocality: 'Ahmedabad', addressRegion: 'Gujarat', addressCountry: 'IN' },
         worksFor: { '@type': 'Organization', name: 'ViewTrade Holding Corp.', url: 'https://viewtrade.com' },
-        alumniOf: { '@type': 'CollegeOrUniversity', name: 'LDRP Institute of Technology & Research, Gujarat Technological University' },
-        knowsAbout: ['Applied AI', 'Fintech', 'Forward deployed engineering', 'Trading systems', 'Matching engines', 'Market data', 'FIX protocol', 'Distributed systems', 'LLM platforms', 'Front-end platform architecture', 'Rust', 'Python', '.NET', 'TypeScript', 'AWS'],
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'LDRP Institute of Technology & Research',
+          parentOrganization: { '@type': 'CollegeOrUniversity', name: 'Gujarat Technological University' },
+        },
+        hasCredential: {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'degree',
+          name: 'Bachelor of Engineering (B.E.), Computer Engineering',
+          recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Gujarat Technological University' },
+        },
+        knowsAbout: ['Applied AI', 'Fintech', 'Forward deployed engineering', 'AI agents', 'Claude Code', 'Trading systems', 'White-label trading platforms', 'Matching engines', 'Market data', 'FIX protocol', 'Distributed systems', 'LLM platforms', 'Rust', 'Python', '.NET', 'C#', 'TypeScript', 'AWS'],
         sameAs: [profile.links.linkedin, profile.links.github],
       },
       ...pagedProjects.map((p) => projectLd(p)),
@@ -202,7 +212,7 @@ ${shows.length ? `  <h2>Skills it demonstrates</h2>
   <p>${shows.map((s) => esc(s.name)).join(' · ')}</p>
 ` : ''}  <h2>More projects by ${esc(profile.name)}</h2>
   <ul>${others.map((o) => `<li><a href="../${o.id}/">${esc(o.name)}</a>: ${esc(o.tagline)}</li>`).join('')}</ul>
-  <footer>Built by <a href="../../">${esc(profile.name)}</a>, ${esc(profile.headline)}, ${esc(profile.city)}, ${esc(profile.country)}. <a href="${esc(profile.calendarUrl ?? `mailto:${profile.email}`)}">Book a call</a>.</footer>
+  <footer>Built by <a href="../../">${esc(profile.name)}</a>, ${esc(profile.headline)}. ${esc(profile.openTo)}. ${esc(profile.city)}, ${esc(profile.country)}. <a href="${esc(profile.calendarUrl ?? `mailto:${profile.email}`)}">Book a call</a>.</footer>
 </main>
 </body>
 </html>

@@ -39,7 +39,7 @@ describe('JSON-LD', () => {
     expect(types.filter((t) => t === 'SoftwareSourceCode')).toHaveLength(pagedProjects.length);
   });
   it('identifies the right person', () => {
-    expect(person.jobTitle).toBe(profile.headline);
+    expect(person.jobTitle).toBe('Software Development Engineer');
     expect(person.sameAs).toEqual([profile.links.linkedin, profile.links.github]);
     expect(JSON.stringify(person.address)).toContain('Ahmedabad');
     expect(person.image).toBeUndefined(); // until a headshot is added
