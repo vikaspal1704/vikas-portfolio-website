@@ -26,20 +26,22 @@ export function Brief({ onAsk }: { onAsk: (q: string) => void }) {
         <div className="brief reveal">
           <div>
             <h3>Now</h3>
-            <p className="kpi mono">{yearsExperience()}+ yrs</p>
+            <p className="kpi mono">
+              {yearsExperience()}+ yrs <span className="kpi-unit">full-time</span>
+            </p>
             <ul>
               <li>
-                <strong style={{ color: 'var(--text)', fontWeight: 500 }}>SDE at ViewTrade</strong>: created and leads its unified front-end platform: 7 frontends merged into one, serving 300+ advisory and retail clients
+                <strong style={{ color: 'var(--text)', fontWeight: 500 }}>SDE at ViewTrade</strong>: took a white-label trading platform from idea to product (7 frontends merged into one, 300+ advisory and retail clients), built with AI agents from specs and tests
               </li>
               <li>Zeus Learning: a production AI platform with 99.9% uptime and ~40% lower LLM costs, and led a team of 4</li>
-              <li>BE Computer Science, GTU (2023)</li>
+              <li>B.E. Computer Engineering, GTU (2023)</li>
             </ul>
           </div>
           <div>
             <h3>Proof</h3>
             <p className="kpi mono up">2M/s</p>
             <ul>
-              <li>Rust matching engine, p50 ≈ 350 ns, diff-tested on 1.5M commands</li>
+              <li>Rust matching engine, ~2M commands/s in the browser, diff-tested on 1.5M commands</li>
               <li>FIX 4.2–5.0 SP2 session engine, L2 feed with gap recovery</li>
               <li>Distributed systems on .NET and AWS (EC2, ECS/EKS, Lambda, SQS, Kinesis)</li>
               <li>An on-device LLM on this page, at zero cost to run</li>

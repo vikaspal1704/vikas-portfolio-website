@@ -68,8 +68,9 @@ export function Hero({ onAsk }: { onAsk: (q: string) => void }) {
           Vikas <em>Pal</em>
         </h1>
         <p className="role-line">
-          Forward Deployed Engineer<span className="x">·</span>Applied AI<span className="x">×</span>Fintech
+          Software Engineer<span className="x">·</span>Applied AI<span className="x">×</span>Fintech
         </p>
+        <p className="open-to">Open to Forward Deployed &amp; Applied AI roles</p>
         <p className="pitch">{profile.pitch}</p>
 
         <div className="counter" aria-live="off">
@@ -84,8 +85,8 @@ export function Hero({ onAsk }: { onAsk: (q: string) => void }) {
               <span>Engine couldn’t start in this browser.</span>
             ) : rate ? (
               <>
-                <span className="up">{rate.toFixed(2)}M orders/s on your device</span>
-                <span>Rust → WebAssembly · 80 KB · Web Worker</span>
+                <span className="up">{rate.toFixed(2)}M commands/s on your device</span>
+                <span>Rust → WebAssembly · under 90 KB · Web Worker</span>
                 {b?.done && <button onClick={rerunBench}>run again</button>}
               </>
             ) : (

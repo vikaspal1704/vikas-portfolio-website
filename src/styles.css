@@ -97,6 +97,7 @@ button, input, textarea { font: inherit; color: inherit; }
 .name em { font-style: italic; color: var(--bid); }
 .role-line { font: 500 clamp(18px, 2.4vw, 26px)/1.25 var(--sans); letter-spacing: -0.01em; margin: 0 0 10px; }
 .role-line .x { color: var(--ai); padding: 0 4px; }
+.open-to { font: 500 13px/1.4 var(--mono); color: var(--muted); margin: -2px 0 16px; }
 .pitch { color: var(--muted); max-width: 640px; font-size: clamp(15px, 1.6vw, 18px); margin: 0 0 28px; }
 
 .counter { display: grid; grid-template-columns: auto 1fr; gap: 4px 18px; align-items: end; margin-bottom: 28px; max-width: 760px; }
@@ -142,6 +143,7 @@ section.block { padding: clamp(72px, 10vw, 128px) 0; border-top: 1px solid var(-
 .brief li { padding-left: 16px; position: relative; color: var(--muted); }
 .brief li::before { content: '▸'; position: absolute; left: 0; color: var(--bid); font-size: 11px; top: 4px; }
 .brief .kpi { font: 600 44px/1 var(--mono); letter-spacing: -0.03em; }
+.brief .kpi-unit { font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--muted); }
 @media (max-width: 860px) { .brief { grid-template-columns: 1fr; } }
 
 /* Instruments */
